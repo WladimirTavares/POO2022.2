@@ -403,3 +403,180 @@ public class saldo {
     }
 }
 ```
+
+### Basquete
+
+```Java
+import java.util.Scanner;
+
+public class basquete {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        int distancia = sc.nextInt();
+
+        if(distancia <= 800){
+            System.out.println(1);
+        }else if(distancia <= 1400){
+            System.out.println(2);
+        }else{
+            System.out.println(3);
+        }
+    }    
+}
+```
+
+### Campo Minado
+
+``` Java
+import java.util.Scanner;
+
+public class campominado {
+    public static void main(String[] args) {
+        Scanner sf = new Scanner(System.in);
+        int tamanho = sf.nextInt();
+        int []jogo = new int[tamanho];
+        int []vetor = new int[tamanho];
+        for(int i = 0; i < tamanho; i++){
+            jogo[i] = sf.nextInt();
+        }
+        if(tamanho == 1){
+            vetor[0] = jogo[0];
+        }else{
+        for(int i = 0; i < tamanho; i++){
+            if(i==0){
+                vetor[i] = 0;
+                vetor[i] =+ jogo[i]+jogo[i+1];
+            }else if(i==tamanho-1){
+                vetor[i] = 0;
+                vetor[i] += jogo[i]+jogo[i-1];
+            }else{
+                vetor[i] = 0;
+                vetor[i] += jogo[i]+jogo[i+1]+jogo[i-1];
+            }
+        }
+    }
+        for(int i = 0; i < tamanho; i++){
+            System.out.println(vetor[i]);
+        }
+        
+    }
+}
+```
+
+### Escada Rolante
+
+/*
+ * Problema Escada Rolante
+ * https://olimpiada.ic.unicamp.br/pratique/pj/2010/f2/escada/
+*/
+
+```Java
+import java.io.*;
+import java.util.Scanner;
+
+public class escada {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(
+            new InputStreamReader(System.in));
+        
+        
+        
+        int n = Integer.parseInt( br.readLine() );
+        int []pessoas = new int[n];
+        int t = 0;
+
+        for (int i = 0; i < n; i++) {
+            pessoas[i] = Integer.parseInt( br.readLine() );
+        }
+
+        for (int i = 0; i < n-1; i++) {
+           if (pessoas[i+1] <= pessoas[i] + 10) t += pessoas[i+1] - pessoas[i];
+           else t += 10;
+        }
+
+        t += 10;
+
+        System.out.println(t);
+    }    
+}
+```
+
+### Plano de Internet
+
+```Java
+import java.util.Scanner;
+
+public class plano {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        int cota = sc.nextInt();
+        int nmes = sc.nextInt();
+        
+        int consumo = 0;
+
+        for(int i = 0; i<nmes; i++){
+            consumo += sc.nextInt();
+        }
+
+        System.out.println((cota * nmes-consumo) + cota);
+    }
+}
+```
+
+### Torneio
+
+```Java
+import java.util.Scanner;
+
+public class torneio {
+   public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String resultado;
+        int count= 0;
+        int grupo;
+
+        for(int i = 0; i < 6; i++) {
+            resultado = sc.next();
+            //System.out.println(resultado);
+            if(resultado.charAt(0) == 'V') {
+                count += 1;
+            }    
+        }
+        grupo = (count >= 5)? 1 : (count >= 3)? 2 : (count >= 1)? 3 : -1;
+
+        System.out.println(grupo);
+   } 
+}
+```
+
+### Vestibular
+
+```Java
+import java.util.Scanner;
+
+public class vestib {
+    public static void main(String [] args){
+        int n;
+        String s1, s2;
+
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        sc.nextLine();
+        s1 = sc.nextLine();
+        s2 = sc.nextLine();
+
+        int acerto = 0;
+
+        for(int i = 0; i < n; i++){
+            if(s1.charAt(i) == s2.charAt(i)){
+                acerto++;
+            }
+        }
+        System.out.println(acerto);
+    }        
+}
+```
+
