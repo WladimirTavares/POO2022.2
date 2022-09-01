@@ -1,4 +1,4 @@
-# Programação Orientada a Objetos
+# Classe
 
 Uma classe é uma abstração das características relevantes de um grupo de objetos do mundo real. Os objetos semelhantes podem ser agrupados em classe. 
 
