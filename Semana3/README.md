@@ -37,11 +37,12 @@ Considere que as características relevantes a todas as lâmpadas são as seguin
 ```Java
 //Lampada.java
 public class Lampada {
+
     boolean estadoDaLampada = false;
 }
 ```
 
-No nosso arquivo teste, podemos fazer o seguinte:
+Depois de definimos a nossa classe, já podemos criar um objetos dessa classe usando a palavra reservada `new`. Observe que a variável `estadoDaLampada` pode ser acessada a partir do objeto `l1`.
 
 ```Java 
 //TesteLampada.java
@@ -86,9 +87,13 @@ public class Lampada {
 }
 ```
 
-No nosso arquivo teste, podemos fazer o seguinte:
+No exemplo abaixo, criaremos um objeto l1 da classe Lampada. Em seguida, mudaremos o seu estado três vezes. Depois, mostraremos o valor da variável `estadoDaLampada` e `contadorVezesLigada`. 
 
 ```
+
+
+public class testeLampada {
+    public static void main(String[] args) {
         Lampada l1 = new Lampada();
         l1.muda();
         l1.muda();
@@ -97,7 +102,6 @@ No nosso arquivo teste, podemos fazer o seguinte:
         System.out.println(l1.contadorVezesLigada); 
     }
 }
-
 /*
 Saída:
 true
@@ -143,9 +147,11 @@ public class Lampada {
 
 ## Customizando a criação de objetos
 
-Em alguns casos, queremos inicializar os dados de uma maneira customizada. Para isso, podemos utilizar uma função especial usada no momento da construção. Todas as lâmpadas criadas começam desligadas e com o contador de vezes ligada igual a zero.
+Em alguns casos, queremos inicializar os dados de uma maneira customizada. Para isso, podemos utilizar uma função especial usada no momento da construção. Até o momento, os objetos da classe Lampada não precisaram de uma informação específica.
 
-Considere agora que vamos adicionar como característica relevante a localização da lâmpada. Note que a localização da lâmpada não será a mesma para todas as lâmpadas.
+Considere agora que vamos adicionar como característica relevante para os objetos da classe Lampada a localização da lâmpada. Note que a localização da lâmpada não será a mesma para todas as lâmpadas.
+
+Utilizaremos um método especial com o mesmo nome da classe recebendo como parâmetro a localização da lâmpada criada.
 
 ```Java
 public class Lampada {

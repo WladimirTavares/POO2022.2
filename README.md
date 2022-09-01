@@ -8,4 +8,5 @@
 
 ### Conceitos de OO
 
+* [Programação Procedural](Procedural/README.md)
 * [Classes](Semana3/README.md)
