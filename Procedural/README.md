@@ -1,4 +1,4 @@
-# Programação Procedural
+# Conexão de dados e funções
 
 Uma das principais limitações da programação procedural é que não existe uma forma simples de criar uma conexão forte entre os dados e funções.
 

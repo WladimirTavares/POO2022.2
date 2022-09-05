@@ -437,6 +437,252 @@ public Data(byte d, byte m, short a) {
         }
     }
 ```
+
+
+### Encadeamento de construtores
+
+O encadeamento de construtores é usado quando nós queremos executar múltiplas tarefas na construção de um objeto. Cada tarefa é colocada em um construtor separado. 
+
+Considere o seguinte exemplo:
+
+```Java
+class Temp
+{
+    int x, y;
+    // default constructor 1
+    // default constructor will call another constructor
+    // using this keyword from same class
+    Temp()
+    {
+        // calls constructor 2
+        this(5);
+        System.out.println("The Default constructor");
+    }
+ 
+    // parameterized constructor 2
+    Temp(int x)
+    {
+        // calls constructor 3
+        this(x, 15);
+        System.out.println("Parameterized constructor 2");
+        
+    }
+ 
+    // parameterized constructor 3
+    Temp(int x, int y)
+    {
+        System.out.println("Parameterized constructor 3");
+        this.x = x;
+        this.y = y;
+    }
+    
+    public String toString(){
+        return String.format("x = %d, y = %d", x, y);
+    }
+ 
+    public static void main(String args[])
+    {
+        // invokes default constructor first
+        Temp t1 = new Temp();
+        Temp t2 = new Temp(2);
+        Temp t3 = new Temp(3,5);
+        
+        System.out.println(t1);
+        System.out.println(t2);
+        System.out.println(t3);
+        
+        
+        
+    }
+}
+
+/*
+ * Output:
+ * Parameterized constructor 3
+Parameterized constructor 2
+The Default constructor
+Parameterized constructor 3
+Parameterized constructor 2
+Parameterized constructor 3
+x = 5, y = 15
+x = 2, y = 15
+x = 3, y = 5
+
+*/
+```
+
+A ordem do encadeamento pode ser mudada:
+
+```Java
+// Java program to illustrate Constructor Chaining
+// within same class Using this() keyword
+// and changing order of constructors
+class Temp2
+{   
+	int x = 0, y = 0;
+	// default constructor 1
+	Temp2()
+	{
+		System.out.println("default constructor");
+	}
+
+	// parameterized constructor 2
+	Temp2(int x)
+	{
+		this();
+		this.x = x;
+		System.out.println("parameterized constructor 2");
+	}
+
+	// parameterized constructor 3
+	Temp2(int x, int y)
+	{
+		this(x);
+		this.y = y;
+        System.out.println("parameterized constructor 3");
+    }
+    
+    public String toString(){
+        return String.format("x = %d, y = %d", x, y);
+    }
+    
+	public static void main(String args[])
+	{
+		Temp2 t1 = new Temp2();
+		Temp2 t2 = new Temp2(5);
+		Temp2 t3 = new Temp2(8,9);
+		System.out.println(t1);
+        System.out.println(t2);
+        System.out.println(t3);
+		
+	}
+}
+```
+
+### Bloco de Inicialização
+
+```Java
+// Java program to illustrate Constructor Chaining
+// within same class Using this() keyword
+// and changing order of constructors
+class Temp3
+{   
+	int x = 0, y = 0;
+	//init block
+	{
+	    System.out.println("init block");
+	}
+	
+	// default constructor 1
+	Temp3()
+	{
+		System.out.println("default constructor");
+	}
+
+	// parameterized constructor 2
+	Temp3(int x)
+	{
+		this();
+		this.x = x;
+		System.out.println("parameterized constructor 2");
+	}
+
+	// parameterized constructor 3
+	Temp3(int x, int y)
+	{
+		this(x);
+		this.y = y;
+        System.out.println("parameterized constructor 3");
+    }
+    
+    public String toString(){
+        return String.format("x = %d, y = %d", x, y);
+    }
+    
+	public static void main(String args[])
+	{
+		Temp3 t1 = new Temp3();
+		Temp3 t2 = new Temp3(5);
+		Temp3 t3 = new Temp3(8,9);
+		System.out.println(t1);
+        System.out.println(t2);
+        System.out.println(t3);
+		
+	}
+}
+```
+
+### Encadeamento de construtores na hierarquia de Classe
+
+```Java
+// Java program to illustrate Constructor Chaining to
+// other class using super() keyword
+class Base
+{
+	String name;
+
+	// constructor 1
+	Base()
+	{
+		this("");
+		System.out.println("No-argument constructor of" +
+										" base class");
+	}
+
+	// constructor 2
+	Base(String name)
+	{
+		this.name = name;
+		System.out.println("Calling parameterized constructor"
+											+ " of base");
+	}
+}
+
+class Derived extends Base
+{
+	// constructor 3
+	Derived()
+	{
+		System.out.println("No-argument constructor " +
+						"of derived");
+	}
+
+	// parameterized constructor 4
+	Derived(String name)
+	{
+		// invokes base class constructor 2
+		super(name);
+		System.out.println("Calling parameterized " +
+						"constructor of derived");
+	}
+
+	public static void main(String args[])
+	{
+		// calls parameterized constructor 4
+		Derived obj1 = new Derived("test");
+
+        System.out.println("----------------------------------");
+
+		// Calls No-argument constructor
+		Derived obj2 = new Derived();
+	}
+}
+
+
+/*
+ * Calling parameterized constructor of base
+Calling parameterized constructor of derived
+----------------------------------
+Calling parameterized constructor of base
+No-argument constructor of base class
+No-argument constructor of derived
+
+ * 
+*/
+
+```
+
+
 ### RobotFire
 
 ```Java

@@ -89,9 +89,7 @@ public class Lampada {
 
 No exemplo abaixo, criaremos um objeto l1 da classe Lampada. Em seguida, mudaremos o seu estado três vezes. Depois, mostraremos o valor da variável `estadoDaLampada` e `contadorVezesLigada`. 
 
-```
-
-
+```Java
 public class testeLampada {
     public static void main(String[] args) {
         Lampada l1 = new Lampada();
@@ -114,8 +112,6 @@ true
 Sempre que possível, a classe deve prover métodos para acessar/alterar seu atributos. Vamos criar mais dois métodos:
 * Um método para mostrar as informações sobre a lâmpada
 * Um método para devolver o número de vezes que ela foi ligada.
-
-
 
 
 
@@ -144,6 +140,29 @@ public class Lampada {
 }
 
 ```
+
+```Java
+public class testeLampada {
+    public static void main(String[] args) {
+        Lampada l1 = new Lampada();
+        l1.muda();
+        l1.muda();
+        l1.muda();
+
+        l1.info();
+        
+        
+    }
+}
+/*
+Output:
+Status: ligada
+Contador: 2
+
+*/
+```
+
+
 
 ## Customizando a criação de objetos
 
@@ -186,6 +205,25 @@ public class Lampada {
 }
 ```
 
+```Java
+public class testeLampada {
+    public static void main(String[] args) {
+        Lampada l1 = new Lampada("cozinha");
+        l1.muda();
+        l1.muda();
+        l1.muda();
+        l1.info();
+    }
+}
+/*
+Output:
+Status: ligada
+Local: cozinha
+Contador: 2
+*/
+```
+
+
 ## Acessando meus ancestrais
 
 Na linguagem Java, a classe Object é a raiz da hierarquia de classe. Toda classe tem a classe Object como classe ancestral.
@@ -216,6 +254,66 @@ class Lampada
 Lampada@7344699f
 Lampada@7344699f
 ```
+
+## Alterando o comportamento dos ancestrais
+
+Na seção anterior, percebemos que o método println recebeu como parâmeto um objeto da classe Lampada e mostrou na saída a String devolvida pelo método toString. Contudo, a Lâmpada possui atributos mais específicos sobre o objeto que podem ser mostrados. Neste caso, vamos fazer uma implementação diferente do método toString(). 
+
+```Java
+public class Lampada {
+    boolean estadoDaLampada = false;
+    int contadorVezesLigada = 0;
+    String local;
+
+    Lampada(String local){
+        //Para acessar a variável local que pertence ao objeto
+        // utilizaremos a referência para o objeto que chamou o método
+        // através da palavra reservada this.
+        this.local = local;
+    }
+
+    void muda(){
+        // estadoDaLampada e o método muda estão na mesma classe
+        estadoDaLampada = !estadoDaLampada;
+        // contadorVezesLigada e o método muda estão na mesma classe
+        if(estadoDaLampada) contadorVezesLigada++;
+    }
+
+    void info(){
+        System.out.println("Status: " + (estadoDaLampada? "ligada" : "desligada" ));
+        System.out.println("Local: " + local);
+        System.out.println("Contador: " + contadorVezesLigada);
+    }
+    
+    public String toString(){
+        return String.format("Status: %s\nLocal: %s\nContador: %d\n", 
+        (estadoDaLampada? "ligada" : "desligada" ), local, contadorVezesLigada
+        );
+    }
+
+    int numVezesLigada(){
+        return contadorVezesLigada;
+    }
+   
+}
+```
+
+```Java
+public class TesteLampada {
+    public static void main(String[] args) {
+        Lampada l1 = new Lampada("cozinha");
+        System.out.println(l1);
+        
+    }
+}
+/*
+Output:
+Status: desligada
+Local: cozinha
+Contador: 0
+*/
+```
+
 
 
 ## Conta Bancária Simplificada
