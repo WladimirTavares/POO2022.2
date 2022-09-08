@@ -1,0 +1,22 @@
+@startuml
+package com.qxcode {
+  class Conta {
+    + numero : int
+    + titular : String
+    + saldo : double
+    + {static} totalContas: int
+    __
+    + Conta(titular : String)
+    + deposita(valor : double) : void
+    + saca(valor : double) : boolean
+    + transfere(destino: Conta, valor : double) : boolean
+    + {static} deposita(destino: Conta, valor : double) : void
+    + {static} saca(origem: Conta, valor : double) : boolean
+    + {static} transfere(origem: Conta, destino: Conta, valor : double) : boolean
+    __
+    + getSaldo() : double
+    __
+    + toString() : String
+  }
+}
+@enduml
