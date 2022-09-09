@@ -1,0 +1,165 @@
+<h1 id="conta-bancária">Conta Bancária</h1>
+<p><img src="https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/conta%20bancaria/070.png" /></p>
+<p><a href="toc"></a></p>
+<ul>
+<li><a href="#conta-bancária">Conta Bancária</a>
+<ul>
+<li><a href="#descrição">Descrição</a></li>
+<li><a href="#shell">Shell</a></li>
+<li><a href="#diagrama">Diagrama</a></li>
+<li><a href="#arquivos">Arquivos</a> <a href="toc"></a></li>
+</ul></li>
+</ul>
+<h2 id="descrição">Descrição</h2>
+<p>O sistema deverá:</p>
+<ul>
+<li><p>Gerenciar várias classes de Conta Bancária.</p></li>
+<li><p>Cada conta bancária deverá ter um número, titular e um saldo.</p></li>
+<li><p>O número da conta é um valor que será atribuído automaticamente pela classe.</p></li>
+<li><p>A conta bancária deve realizar três operações:</p>
+<ul>
+<li>sacar um valor</li>
+<li>depositar um valor</li>
+<li>transferir um valor. ## Shell</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">init</span> gustavo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="va">$init</span> <span class="ex">gustavo</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ex">show</span> 0</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 0, Titular: gustavo, Saldo: 0.00</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="ex">deposita</span> 0 1000</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="va">$deposita</span> <span class="ex">0</span> 1000</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="ex">show</span> 0</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">0</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 0, Titular: gustavo, Saldo: 1000.00</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="ex">init</span> pedro</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="va">$init</span> <span class="ex">pedro</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="ex">show</span> 1</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 1, Titular: pedro, Saldo: 0.00</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="ex">deposita</span> 1 450</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="va">$deposita</span> <span class="ex">1</span> 450</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="ex">show</span> 1</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">1</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 1, Titular: pedro, Saldo: 450.00</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="ex">transfere</span> 0 1 200</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a><span class="va">$transfere</span> <span class="ex">0</span> 1 200</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a><span class="ex">show</span> 0</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">0</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 0, Titular: gustavo, Saldo: 800.00</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a><span class="ex">show</span> 1</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">1</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 1, Titular: pedro, Saldo: 650.00</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a><span class="ex">end</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a><span class="va">$end</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">init</span> pedro</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="va">$init</span> <span class="ex">pedro</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ex">deposita</span> 0 1000</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="va">$deposita</span> <span class="ex">0</span> 1000</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">show</span> 0</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 0, Titular: pedro, Saldo: 1000.00</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="ex">saca</span> 0 1200</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="va">$saca</span> <span class="ex">0</span> 1200</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="ex">Conta</span> ficou zerada após o saque 1000.00 reais</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="ex">show</span> 0</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="va">$show</span> <span class="ex">0</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="ex">Nro</span> da conta: 0, Titular: pedro, Saldo: 0.00</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="ex">end</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="va">$end</span></span></code></pre></div>
+<h2 id="diagrama">Diagrama</h2>
+<p><img src="https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/conta%20bancaria/diagrama.png" /></p>
+<h2 id="arquivos">Arquivos</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.ArrayList;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Locale;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">class</span> Conta {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="kw">private</span> <span class="bu">String</span> titular;</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">int</span> numero;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">double</span> saldo;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> totalContas = <span class="dv">0</span>;</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="kw">public</span> <span class="fu">Conta</span>(<span class="bu">String</span> titular){</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    }</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="dt">void</span> <span class="fu">deposita</span>(<span class="dt">double</span> valor){</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>        </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    }</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">deposita</span>(Conta c, <span class="dt">double</span> valor){</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>        </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    }</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>    <span class="dt">boolean</span> <span class="fu">saca</span>(<span class="dt">double</span> valor){</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>        </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>    }</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">saca</span>(Conta c, <span class="dt">double</span> valor){</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>        </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>    }</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>    <span class="dt">boolean</span> <span class="fu">transfere</span>(Conta c, <span class="dt">double</span> valor){</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>        </span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>    }</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">boolean</span> <span class="fu">transfere</span>(Conta origem, Conta destino, <span class="dt">double</span> valor){</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a>        </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a>    }</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>    </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span>(){</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>        <span class="kw">return</span> <span class="bu">String</span><span class="fu">.format</span>(<span class="st">&quot;Nro da conta: </span><span class="sc">%d</span><span class="st">, Titular: </span><span class="sc">%s</span><span class="st">, Saldo: </span><span class="sc">%.2f</span><span class="st">&quot;</span>, numero, titular, saldo);</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>    }</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a>    <span class="dt">double</span> <span class="fu">getSaldo</span>(){</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>        </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>    }</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>}</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true"></a><span class="kw">class</span> Solver{</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true"></a>        <span class="bu">Scanner</span> scanner = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true"></a>        <span class="bu">Locale</span>.<span class="fu">setDefault</span> ( <span class="bu">Locale</span>.<span class="fu">US</span> ) ;</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true"></a>        </span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true"></a>        <span class="bu">ArrayList</span>&lt;Conta&gt; contas = <span class="kw">new</span> <span class="bu">ArrayList</span>&lt;Conta&gt;();</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true"></a>        <span class="kw">while</span>(<span class="kw">true</span>) {</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true"></a>            <span class="bu">String</span> line = scanner.<span class="fu">nextLine</span>();</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true"></a>            <span class="bu">String</span> ui[] = line.<span class="fu">split</span>(<span class="st">&quot; &quot;</span>);</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;$&quot;</span> + line);</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true"></a>            <span class="kw">if</span>(ui[<span class="dv">0</span>].<span class="fu">equals</span>(<span class="st">&quot;init&quot;</span>)) {</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true"></a>                contas.<span class="fu">add</span>( <span class="kw">new</span> <span class="fu">Conta</span>( ui[<span class="dv">1</span>] ) );</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true"></a>            } <span class="kw">else</span> <span class="kw">if</span>(ui[<span class="dv">0</span>].<span class="fu">equals</span>(<span class="st">&quot;end&quot;</span>)) {</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true"></a>                <span class="kw">break</span>;</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true"></a>            } <span class="kw">else</span> <span class="kw">if</span>(ui[<span class="dv">0</span>].<span class="fu">equals</span>(<span class="st">&quot;deposita&quot;</span>)) {</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true"></a>                <span class="dt">int</span> nro = <span class="bu">Integer</span>.<span class="fu">parseInt</span>(ui[<span class="dv">1</span>] );</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true"></a>                <span class="dt">double</span> valor = <span class="bu">Double</span>.<span class="fu">parseDouble</span>(ui[<span class="dv">2</span>]);</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true"></a>                Conta.<span class="fu">deposita</span>( contas.<span class="fu">get</span>(nro),  valor); </span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true"></a>            }<span class="kw">else</span> <span class="kw">if</span>(ui[<span class="dv">0</span>].<span class="fu">equals</span>(<span class="st">&quot;saca&quot;</span>)) {</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true"></a>                <span class="dt">int</span> nro = <span class="bu">Integer</span>.<span class="fu">parseInt</span>(ui[<span class="dv">1</span>] );</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true"></a>                <span class="dt">double</span> valor = <span class="bu">Double</span>.<span class="fu">parseDouble</span>(ui[<span class="dv">2</span>]);</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true"></a>                Conta.<span class="fu">saca</span>( contas.<span class="fu">get</span>(nro),  valor); </span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true"></a>            }<span class="kw">else</span> <span class="kw">if</span>(ui[<span class="dv">0</span>].<span class="fu">equals</span>(<span class="st">&quot;transfere&quot;</span>)) {</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true"></a>                <span class="dt">int</span> origem = <span class="bu">Integer</span>.<span class="fu">parseInt</span>(ui[<span class="dv">1</span>] );</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true"></a>                <span class="dt">int</span> destino = <span class="bu">Integer</span>.<span class="fu">parseInt</span>(ui[<span class="dv">2</span>] );</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true"></a>                <span class="dt">double</span> valor = <span class="bu">Double</span>.<span class="fu">parseDouble</span>(ui[<span class="dv">3</span>]);</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true"></a>                Conta.<span class="fu">transfere</span>( contas.<span class="fu">get</span>(origem), contas.<span class="fu">get</span>(destino), valor); </span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true"></a>            } <span class="kw">else</span> <span class="kw">if</span>(ui[<span class="dv">0</span>].<span class="fu">equals</span>(<span class="st">&quot;show&quot;</span>)) {</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true"></a>                <span class="dt">int</span> i = <span class="bu">Integer</span>.<span class="fu">parseInt</span>(ui[<span class="dv">1</span>] );</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>( contas.<span class="fu">get</span>(i) ); </span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true"></a>            } <span class="kw">else</span>{</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;fail: comando invalido&quot;</span>);</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true"></a>            }</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true"></a>        }</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true"></a>        scanner.<span class="fu">close</span>();</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true"></a>    }</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true"></a>}</span></code></pre></div>

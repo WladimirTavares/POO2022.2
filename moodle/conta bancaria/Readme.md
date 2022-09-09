@@ -1,6 +1,6 @@
 # Conta Bancária
 
-![](070.png)
+![](https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/conta%20bancaria/070.png)
 
 [](toc)
 
@@ -13,13 +13,17 @@
 
 ## Descrição
 O sistema deverá:
-- Gerenciar várias classes de Conta Bancária.
-- Cada conta bancária deverá ter um número, titular e um saldo.
-- O número da conta é um valor que será atribuído automaticamente pela classe.
-- A conta bancária deve realizar três operações:
-  - sacar um valor
-  - depositar um valor
-  - transferir um valor.
+
+* Gerenciar várias classes de Conta Bancária.
+
+* Cada conta bancária deverá ter um número, titular e um saldo.
+
+* O número da conta é um valor que será atribuído automaticamente pela classe.
+
+* A conta bancária deve realizar três operações:
+  * sacar um valor
+  * depositar um valor
+  * transferir um valor.
 ## Shell
 
 ```bash
@@ -75,7 +79,7 @@ $end
 ```
 
 ## Diagrama
-![](diagrama.png)
+![](https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/conta%20bancaria/diagrama.png)
 
 ## Arquivos
 
