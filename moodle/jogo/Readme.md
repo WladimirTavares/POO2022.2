@@ -1,6 +1,6 @@
 # Jogo de Tabuleiro
 
-![](003.png)
+![](https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/jogo/003.png)
 
 [](toc)
 
@@ -26,7 +26,7 @@ chegar ao final da trilha e ganhar o jogo.Observe também que não haverá empat
 
 
 ## Diagrama
-![](diagrama.png)
+![](https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/jogo/diagrama.png)
 
 
 ## Shell
