@@ -1,0 +1,20 @@
+$cadastra 3
+$cadastra 5
+$cadastra 8
+$computa 
+16
+$show
+valores = [3, 5, 8]
+$cadastra 0
+$computa
+8
+$show
+valores = [3, 5]
+$cadastra 0
+$cadastra 7
+$cadastra 6
+$computa
+16
+$show
+valores = [3, 7, 6]
+$end

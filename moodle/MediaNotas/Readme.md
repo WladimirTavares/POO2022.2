@@ -1,6 +1,6 @@
 # MediaNotas
 
-![](004.png)
+![](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/MediaNotas/004.png)
 
 [](toc)
 
@@ -30,7 +30,7 @@ Métodos:
 
 
 ## Diagrama
-![](diagrama.png)
+![](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/MediaNotas/diagrama.png)
 
 
 ## Shell
