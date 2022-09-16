@@ -1,0 +1,24 @@
+$addNota 8
+$addNota 9
+$addNota 7
+$show
+[8.00, 9.00, 7.00]
+$media
+8.00
+$parametriza
+$show
+[8.89, 10.00, 7.78]
+$media
+8.89
+$addNota 7
+$addNota 6
+$show
+[8.89, 10.00, 7.78, 7.00, 6.00]
+$media
+7.93
+$parametriza
+$show
+[8.89, 10.00, 7.78, 7.00, 6.00]
+$media
+7.93
+$end
