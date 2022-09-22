@@ -1,6 +1,6 @@
 # Zero para cancelar
 
-![](zero.png)
+![](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/Zero/zero.png)
 
 [](toc)
 
