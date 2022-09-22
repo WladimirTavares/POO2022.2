@@ -228,21 +228,7 @@ enum Coin {
 
     public void setValue(int v) { this.value = v; }
 
-    @Override
-    public boolean equals(Object obj) {
-        return true;
-        if(obj instanceof Pessoa) {
-            
-        }
-        else {
-            return false;
-        }
-    }
-
-    @Override
-    public String toStrings() {
-        return String.format("Valor: %d", value);
-    }
+    
 }
 
 public class CoinTest {
