@@ -1,0 +1,22 @@
+init 2
+show
+call 0
+call 1
+arrive joao
+arrive maria
+arrive ana
+show
+call 0
+show
+call 1
+show
+finish 1
+show
+call 1
+show
+finish 0
+show
+finish 1
+show 
+end
+

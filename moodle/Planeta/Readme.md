@@ -1,6 +1,6 @@
 # Calculando seu peso
 
-![](astro.jpg)
+![](https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/Planeta/astro.jpg)
 
 [](toc)
 
@@ -45,7 +45,7 @@ O planeta deve ser implementado como uma enumeração de oitos planetas. Cada pl
 
 
 
-![](Planeta.png)
+![Planeta.png](https://github.com/WladimirTavares/POO2022.2/raw/main/moodle/Planeta/Planeta.png)
 
 
 
