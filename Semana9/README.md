@@ -7,7 +7,7 @@
 * No Java, strings são imutáveis: o seu valor não pode ser mudado depois que elas são criadas.
 * A fim de conservar memória, o Java trata todas as string literais que possuem o mesmo conteúdo como um único objeto String.
 
-##Classe String – Construtores
+## Classe String – Construtores
 
 A classe String provê diversos construtores, alguns dos quais estão listados abaixo.
 
@@ -82,6 +82,51 @@ acomodar os caracteres adicionais.
 modificações de strings, pode ser mais eficiente implementar essas
 modificações com a classe StringBuilder.
 * [Documentação StringBuilder](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/StringBuilder.html)
+
+## Comparação temp
+
+```Java
+public class StringBuilderTeste {
+    public static void main(String[] args) {
+        String s = "";
+        int size = 100000;
+        long startTime, elapsedTime; 
+        
+        startTime = System.nanoTime();
+        //startTime = System.currentTimeMillis();
+        for(int i = 0; i < size; i++){
+            s += i;
+        }
+        elapsedTime = System.nanoTime() - startTime;
+        //elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println("Total execution time  in millis: "
+                + elapsedTime/1000000);
+        //System.out.println("Total execution time  in millis: "
+        //+ elapsedTime);
+        StringBuilder s2 = new StringBuilder("");
+        startTime = System.nanoTime();
+        for(int i = 0; i < size; i++){
+            s2.append(i);
+        }
+        elapsedTime = System.nanoTime() - startTime;
+        
+        System.out.println("Total execution time  in millis: "
+                + elapsedTime/1000000);
+
+
+        //System.out.println(s);
+
+
+    }
+}
+
+/*
+Output: 
+Total execution time  in millis: 4109
+Total execution time  in millis: 3
+*/
+
+```
 
 ## StringBuilder — Construtores
 
