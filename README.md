@@ -13,3 +13,5 @@
 * [Array e ArrayList](Semana6/README.md)
 * [Relacionamentos](Semana7/README.md)
 * [Enumeração](Semana8/README.md)
+* [String](Semana9/README.md)
+* [Pacotes](Semana10/README.md)
