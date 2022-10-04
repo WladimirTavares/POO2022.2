@@ -21,7 +21,7 @@ Todas elas trabalham com datas de formas diferentes.
 * A maneira mais simples de criar um pacote de classes é criar um diretório
 e colocar lá todos os códigos-fonte das classes que serão consideradas
 pertencentes àquele pacote.
-*  Importante: Cada classe pertencente a um pacote deve ter, no inı́cio do
+*  Importante: Cada classe pertencente a um pacote deve ter, no início do
 arquivo, antes de qualquer outra declaração, a palavra-chave package seguida do nome do pacote (caminho de diretórios) ao qual esta classe deverá pertencer.
 * Todas as classes criadas sem declaração de pertinência em pacotes pertencem ao chamado pacote default.
     *  As classes criadas assim pertencem ao mesmo pacote e não são necessárias declarações adicionais quando usamos instâncias de uma classe dentro da outra.
@@ -37,7 +37,7 @@ uma hora através do mecanismo de composição.
 
 
 # Padrão da nomenclatura dos pacotes
-* As empresas usam seu nome de domı́nio na Internet de forma reversa para
+* As empresas usam seu nome de domínio na Internet de forma reversa para
 nomear seus pacotes, por exemplo:
 br.com.nomedaempresa.nomedoprojeto.subpacote para um pacote
 denominado subpacote criado por um programador em
@@ -54,7 +54,7 @@ estejam contidas neles.
 públicas de outros pacotes.
 * Podemos acessar uma classe pública em outro pacote de duas formas:
 * escrevendo o nome completo do pacote antes do nome da classe:
-```java
+```Java
 java.util.Scanner input;
 ```
 ◦ Usando a palavra-chave import. A declaração import permite que
@@ -64,7 +64,7 @@ import java.util.Scanner;
 Scanner input;
 ```
 • Podemos importar todos as classes de um pacote (exceto os subpacotes)
-usando o sı́mbolo ∗:
+usando o símbolo \*:
 
 Exemplo: 
 ```Java
@@ -95,7 +95,7 @@ import java.sql.*;
 ...
 Date today; // Erro de compilação
 ```
-• Isso pode ser resolvido adicionando um import especı́fico:
+• Isso pode ser resolvido adicionando um import específico:
 ```Java
 import java.util.*;
 import java.sql.*;
@@ -127,18 +127,18 @@ pode ser public, e deve ter o mesmo nome do arquivo-fonte.
 *  Uma vez que outros programadores irão utilizar essa classe, quando
 precisarem olhar o código da mesma, fica mais fácil encontrá-la
 sabendo que ela está no arquivo de mesmo nome.
-*  Somente os membros public de um pacote são visı́veis fora do pacote,
+*  Somente os membros public de um pacote são visíveis fora do pacote,
 isso inclui as classes, seus construtores, atributos e métodos.
 
 
 ## Static imports
-* Também é possı́vel importar métodos e atributos estáticos (static)
+* Também é possível importar métodos e atributos estáticos (static)
 * Conhecemos a classe Math, do pacote java.lang, que possui vários
 métodos estáticos como, por exemplo:
 * Math.sqrt(), Math.sin(), Math.cos(), Math.abs(), Math.pow(), etc.
-* É possı́vel usar os métodos estáticos da classe Math sem ter de colocar o
+* É possível usar os métodos estáticos da classe Math sem ter de colocar o
 nome da classe antes do nome do método. Para isso, basta colocar um
-static import no inı́cio do arquivo que usa esses métodos:
+static import no início do arquivo que usa esses métodos:
 ```Java
 import static java.lang.Math.*;
 ```
@@ -315,7 +315,7 @@ null
 *  Java possui um mecanismo de geração de documentação que cria documentos em HTML a partir de comentários escritos no próprio código.
 *  Isso facilita a tarefa do programador — em um mesmo documento ele
 escreve o que o código faz e quais informações pertinentes devem ser
-incluı́das na documentação.
+incluídas na documentação.
 *  Tudo o que for escrito entre os conjuntos de caracteres /** e */ é
 considerado comentário. Se o conteúdo entre /** e */ seguir certas
 regras, poderemos documentar classes e métodos usando os próprios
@@ -428,7 +428,7 @@ Os comentários de documentação podem conter múltiplos tags @see.
 *  Comentários de atributos devem estar imediatamente antes da declaração
 dos atributos.
 *  Por default, somente os atributos protegidos e públicos de uma classe
-serão incluı́dos na documentação, e devem ser comentados
+serão incluídos na documentação, e devem ser comentados
 separadamente.
 
 ## Documentação de métodos e construtores

@@ -1,6 +1,6 @@
 # String
 
-* Strings são sequências de caracteres, que podem conter letras, dı́gitos e caracteres especiais.
+* Strings são sequências de caracteres, que podem conter letras, dígitos e caracteres especiais.
 * No Java, uma string é um objeto da classe String.
 * String literais são sequências de caracteres no código escritas entre aspas duplas. Ex.: ”Amanda Costa”.
 * São armazenadas na memória como objetos da classe String
@@ -150,15 +150,15 @@ caracteres, Strings e Objects.
 
 ## StringBuilder — Método insert
 * StringBuilder fornece versões sobrecarregadas do método insert.
-* Este método recebe dois argumentos: o primeiro é o ı́ndice em que o
+* Este método recebe dois argumentos: o primeiro é o índice em que o
 valor deve ser inserido e o segundo argumento é o valor a ser inserido.
-    * O ı́ndice deve ser maior ou igual a 0 e menor ou igual ao comprimento da sequência.
+    * O índice deve ser maior ou igual a 0 e menor ou igual ao comprimento da sequência.
 
 ## StringBuilder — Removendo
 * StringBuilder fornece os métodos delete e deleteCharAt para deletar
 caracteres em qualquer posição de uma StringBuilder.
 * StringBuilder delete(int start, int end)
-    * A substring a ser excluı́da começa na posição start e termina na posição end-1 ou vai até o fim desta sequência se essa posição não existir. Se start == end, nenhuma modificação é feita.
+    * A substring a ser excluída começa na posição start e termina na posição end-1 ou vai até o fim desta sequência se essa posição não existir. Se start == end, nenhuma modificação é feita.
 * StringBuilder deleteCharAt(int index)
   * Remove o char na posição especificada no argumento.
 
