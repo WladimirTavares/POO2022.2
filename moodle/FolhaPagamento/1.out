@@ -1,0 +1,13 @@
+$addEmpregado wladimir 40 40
+$addEmpregado jose 40 100
+$addEmpregado manoel 20 80
+$addTerceirizado joaquim 8 100 200
+$mostra
+Empresa: 
+Nome: wladimir, horas trabalhadas: 40, valor por hora: 40.00
+Nome: jose, horas trabalhadas: 40, valor por hora: 100.00
+Nome: manoel, horas trabalhadas: 20, valor por hora: 80.00
+Nome: joaquim, horas trabalhadas: 8, valor por hora: 100.00, Despesa adicional: 200.0
+$calculaFolha
+Folha de pagamento: 8220.00
+$end 

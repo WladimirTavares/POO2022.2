@@ -1,0 +1,9 @@
+addEmpregado wladimir 40 40
+addEmpregado jose 40 100
+addEmpregado manoel 20 80
+addTerceirizado joaquim 8 100 200
+mostra
+calculaFolha
+end 
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+</head>
+<body>
+<h2 id="empresa">Empresa</h2>
+<p><a href="toc"></a></p>
+<ul>
+<li><a href="#empresa">Empresa</a></li>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#diagrama">Diagrama</a></li>
+<li><a href="#shell">Shell</a> <a href="toc"></a></li>
+</ul>
+<p>Nosso objetivo no trabalho é modelar em empresa com empregados e terceirizados.</p>
+<h2 id="intro">Intro</h2>
+<p>Uma empresa possui funcionários próprios e terceirizados. Para cada funcionário, deseja-se registrar nome, horas trabalhadas e valor por hora. Funcionários terceirizados possuem ainda uma despesa adicional.</p>
+<p>O pagamento dos funcionários corresponde ao valor da hora multiplicado pelas horas trabalhadas, sendo que os funcionários terceirizados ainda recebem um bônus correspondente a 110% de sua despesa adicional.</p>
+<h2 id="diagrama">Diagrama</h2>
+<p><img src="folha.png" /></p>
+<h2 id="shell">Shell</h2>
+<pre><code>$addEmpregado wladimir 40 40
+$addEmpregado jose 40 100
+$addEmpregado manoel 20 80
+$addTerceirizado joaquim 8 100 200
+$mostra
+Empresa: 
+Nome: wladimir, horas trabalhadas: 40, valor por hora: 40.00
+Nome: jose, horas trabalhadas: 40, valor por hora: 100.00
+Nome: manoel, horas trabalhadas: 20, valor por hora: 80.00
+Nome: joaquim, horas trabalhadas: 8, valor por hora: 100.00, Despesa adicional: 200.0
+$calculaFolha
+Folha de pagamento: 8220.00
+$end </code></pre>
+</body>
+</html>
