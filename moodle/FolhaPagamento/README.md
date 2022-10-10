@@ -26,7 +26,7 @@ recebem um bônus correspondente a 110% de sua despesa adicional.
 
 ## Diagrama
 
-![](folha.png)
+![](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/FolhaPagamento/folha.png)
 
 ## Shell
 
