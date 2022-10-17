@@ -26,7 +26,7 @@ O círculo pode ser definido pelo ponto do centro e pelo raio.
 
 ***
 ## Guide
-![](diagrama.png)
+![](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/Figuras/diagrama.png)
 
 
 ***
