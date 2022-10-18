@@ -331,6 +331,26 @@ declare tratar a exceção especı́fica que foi lançada;
   * String toString(): retorna uma descrição sumária da exceção.
   * getStackTrace: recupera informações do rastreamento de pilha como um array de objetos StackTraceElement; permite processamento personalizado das informações sobre a exceção.
 
+## Exceções verificadas vs. Exceções não-verificadas
+
+Exceções não-verificadas (unchecked exceptions):
+* Herdam da classe RuntimeException ou da classe Error.
+* O compilador não verifica o código para ver se a exceção foi capturada ou declarada.
+* Se uma exceção não-verificada ocorrer e não tiver sido capturada, o
+programa terminará ou executará com resultados inesperados.
+* Em geral, podem ser evitadas com uma codificação adequada.
+
+
+## Exceções verificadas (checked exceptions):
+* Essas exceções que são herdadas da classe Exception, mas não de
+RuntimeException.
+  * ClassNotFoundException, IOException, SQLException são exemplos de exceções verificadas.
+* Exceções verificadas pelo compilador em tempo de compilação. Essas exceções devem ser detectadas por um try-catch no código ou declaradas pelo método como lançáveis (cláusula throws).
+* Por exemplo, se um programa tentar acessar um arquivo que não está
+disponı́vel no momento, o método que tenta acessar o arquivo deve
+capturar ou declarar uma FileNotFoundException.
+
+
 ## Declarando novas classes de Exceção
 • Você pode declarar suas próprias classes de exceção especı́ficas dos problemas que podem ocorrer quando um outro programa utiliza suas classes reutilizáveis.
 * A nova classe de exceção deve estender uma classe de exceção existente.
@@ -436,5 +456,50 @@ public class FullStackException extends Exception {
     FullStackException(Throwable obj) {
         super(obj);
     }
+}
+```
+
+
+## Exception Handling Anti-Patterns
+
+* Correa et al. says that an anti-pattern describes a solution to a recurrent problem that generates negative consequences to a project. An anti-pattern can be a result of either not working a better solution or using a good solution in a wrong context.
+
+* Correa AL, Werner CM, Zaverucha G (2000) Object oriented design expertise reuse: an approach based on heuristics, design patterns and anti-patterns. In: Software Reuse: Advances in Software Reusability. Springer. pp 336–352. https://doi.org/10.1007/978-3-540-44995-9_20
+
+![](Exception2.png)
+
+![](Exception3.png)
+
+* DE PADUA, Guilherme Bicalho; SHANG, Weiyi. Studying the prevalence of exception handling anti-patterns. In: 2017 IEEE/ACM 25th International Conference on Program Comprehension (ICPC). IEEE, 2017. p. 328-331.
+* 
+![](Exception4.png)
+
+* DE SOUSA, Dêmora BC et al. Studying the evolution of exception handling anti-patterns in a long-lived large-scale project. Journal of the Brazilian Computer Society, v. 26, n. 1, p. 1-24, 2020.
+  
+![](Exception5.png)
+
+![](Exception6.png)
+
+```Java
+//Example of Destructive Wrapping
+try {
+if(con != null) con.close();
+} catch (SQLException e) {
+throw new DataException(e.getMessage());
+}
+//Example of Catch Generic
+try {
+cal = CalendarHelper.getCalendar(getCurrentUser());
+} catch (Exception e) {
+e.printStackTrace();
+defaultHandle(e);
+}
+//Example of Throws Generic
+public Object method(HttpServletRequest req)
+throws Exception {
+GenericDataAccess dao = getGeneric();
+Object obj = getCommandClass().newInstance();
+// . . . .
+return obj;
 }
 ```
