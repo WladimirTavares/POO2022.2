@@ -478,6 +478,9 @@ public class FullStackException extends Exception {
   
 ![](Exception5.png)
 
+* PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, PLSQL, Apache Velocity, XML, XSL.
+* [Link PMD](https://pmd.github.io/)
+
 ![](Exception6.png)
 
 ```Java
