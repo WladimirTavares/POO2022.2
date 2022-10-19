@@ -1,7 +1,5 @@
 ## Collections Framework
 
-
-
 * O framework Collections é uma arquitetura unificada para representar e manipular coleções (collections) independentemente dos detalhes de implementação.
 
 * Algumas classes que implementam estruturas de dados podem ter funções semelhantes mas implementações internamente diferentes (por exemplo: lista encadeada × vetor).
@@ -309,6 +307,8 @@ public class Exemplo5 {
 
 ![](map.png)
 
+![](map3.png)
+
 ![](map2.png)
 
 
@@ -324,3 +324,391 @@ public class Exemplo5 {
 * LinkedHashMap
   * Mantém um lista duplamente encadeada entre os itens
   * Ordem de iteração é a ordem de inserção
+
+### HashMap
+```java
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+
+public class Exemplo6 {
+    public static void main(String[] args) {
+        Map<String, Integer> votos = new HashMap<String, Integer>();
+        votos.put("java", 6);
+        votos.put("python", 6);
+        votos.put("c++", 5);
+        votos.put("javascript", 8);
+        votos.put("ada", 1);
+        votos.put("c", 3);
+        votos.put("bash", 1);
+        votos.put("eiffel", 0);
+
+        
+        Iterator<Map.Entry<String, Integer>> it = votos.entrySet().iterator();
+        System.out.println("iterating using Iterator");
+        
+        //using Iterator
+        while( it.hasNext() ){
+            Map.Entry<String, Integer> entry = it.next(); 
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating using Iterator + type inference");
+        
+        //using Iterator + type inference
+        var it2 = votos.entrySet().iterator();
+        while( it2.hasNext() ){
+            var entry = it2.next(); 
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating over entrySet");
+        //iterating over entrySet
+        for(var entry : votos.entrySet() ){
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating over keySet");
+        //iterating over keySet
+        for(String key : votos.keySet() ){
+            System.out.printf( "votos[%s] = %d\n", key, votos.get(key) );
+        }
+
+        System.out.println("iterating using forEach");
+        //iterating using forEach
+        votos.forEach( (k,v)-> System.out.printf( "votos[%s] = %d\n", k, v) );
+
+        
+    }
+}
+/*
+iterating using Iterator
+votos[python] = 6
+votos[c++] = 5
+votos[java] = 6
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+votos[javascript] = 8
+votos[ada] = 1
+iterating using Iterator + type inference
+votos[python] = 6
+votos[c++] = 5
+votos[java] = 6
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+votos[javascript] = 8
+votos[ada] = 1
+iterating over entrySet
+votos[python] = 6
+votos[c++] = 5
+votos[java] = 6
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+votos[javascript] = 8
+votos[ada] = 1
+iterating over keySet
+votos[python] = 6
+votos[c++] = 5
+votos[java] = 6
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+votos[javascript] = 8
+votos[ada] = 1
+iterating using forEach
+votos[python] = 6
+votos[c++] = 5
+votos[java] = 6
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+votos[javascript] = 8
+votos[ada] = 1
+*/
+```
+
+###TreeMap
+```java
+import java.util.TreeMap;
+import java.util.Map;
+import java.util.Iterator;
+
+public class Exemplo7 {
+    public static void main(String[] args) {
+        Map<String, Integer> votos = new TreeMap<String, Integer>();
+
+        votos.put("java", 6);
+        votos.put("python", 6);
+        votos.put("c++", 5);
+        votos.put("javascript", 8);
+        votos.put("ada", 1);
+        votos.put("c", 3);
+        votos.put("bash", 1);
+        votos.put("eiffel", 0);
+        
+        Iterator<Map.Entry<String, Integer>> it = votos.entrySet().iterator();
+        System.out.println("iterating using Iterator");
+        
+        //using Iterator
+        while( it.hasNext() ){
+            Map.Entry<String, Integer> entry = it.next(); 
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating using Iterator + type inference");
+        
+        //using Iterator + type inference
+        var it2 = votos.entrySet().iterator();
+        while( it2.hasNext() ){
+            var entry = it2.next(); 
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating over entrySet");
+        //iterating over entrySet
+        for(var entry : votos.entrySet() ){
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating over keySet");
+        //iterating over keySet
+        for(String key : votos.keySet() ){
+            System.out.printf( "votos[%s] = %d\n", key, votos.get(key) );
+        }
+
+        System.out.println("iterating using forEach");
+        //iterating using forEach
+        votos.forEach( (k,v)-> System.out.printf( "votos[%s] = %d\n", k, v) );
+
+        
+    }
+}
+/*
+iterating using Iterator
+votos[ada] = 1
+votos[bash] = 1
+votos[c] = 3
+votos[c++] = 5
+votos[eiffel] = 0
+votos[java] = 6
+votos[javascript] = 8
+votos[python] = 6
+iterating using Iterator + type inference
+votos[ada] = 1
+votos[bash] = 1
+votos[c] = 3
+votos[c++] = 5
+votos[eiffel] = 0
+votos[java] = 6
+votos[javascript] = 8
+votos[python] = 6
+iterating over entrySet
+votos[ada] = 1
+votos[bash] = 1
+votos[c] = 3
+votos[c++] = 5
+votos[eiffel] = 0
+votos[java] = 6
+votos[javascript] = 8
+votos[python] = 6
+iterating over keySet
+votos[ada] = 1
+votos[bash] = 1
+votos[c] = 3
+votos[c++] = 5
+votos[eiffel] = 0
+votos[java] = 6
+votos[javascript] = 8
+votos[python] = 6
+iterating using forEach
+votos[ada] = 1
+votos[bash] = 1
+votos[c] = 3
+votos[c++] = 5
+votos[eiffel] = 0
+votos[java] = 6
+votos[javascript] = 8
+votos[python] = 6
+
+*/
+```
+
+### LinkedHashMap
+
+```java
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Iterator;
+
+public class Exemplo8 {
+    public static void main(String[] args) {
+        Map<String, Integer> votos = new LinkedHashMap<String, Integer>();
+
+        votos.put("java", 6);
+        votos.put("python", 6);
+        votos.put("c++", 5);
+        votos.put("javascript", 8);
+        votos.put("ada", 1);
+        votos.put("c", 3);
+        votos.put("bash", 1);
+        votos.put("eiffel", 0);
+        
+        Iterator<Map.Entry<String, Integer>> it = votos.entrySet().iterator();
+        System.out.println("iterating using Iterator");
+        
+        //using Iterator
+        while( it.hasNext() ){
+            Map.Entry<String, Integer> entry = it.next(); 
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating using Iterator + type inference");
+        
+        //using Iterator + type inference
+        var it2 = votos.entrySet().iterator();
+        while( it2.hasNext() ){
+            var entry = it2.next(); 
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating over entrySet");
+        //iterating over entrySet
+        for(var entry : votos.entrySet() ){
+            System.out.printf( "votos[%s] = %d\n", entry.getKey(), entry.getValue() );
+        }
+        System.out.println("iterating over keySet");
+        //iterating over keySet
+        for(String key : votos.keySet() ){
+            System.out.printf( "votos[%s] = %d\n", key, votos.get(key) );
+        }
+
+        System.out.println("iterating using forEach");
+        //iterating using forEach
+        votos.forEach( (k,v)-> System.out.printf( "votos[%s] = %d\n", k, v) );
+
+        
+    }
+}
+/*
+iterating using Iterator
+votos[java] = 6
+votos[python] = 6
+votos[c++] = 5
+votos[javascript] = 8
+votos[ada] = 1
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+iterating using Iterator + type inference
+votos[java] = 6
+votos[python] = 6
+votos[c++] = 5
+votos[javascript] = 8
+votos[ada] = 1
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+iterating over entrySet
+votos[java] = 6
+votos[python] = 6
+votos[c++] = 5
+votos[javascript] = 8
+votos[ada] = 1
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+iterating over keySet
+votos[java] = 6
+votos[python] = 6
+votos[c++] = 5
+votos[javascript] = 8
+votos[ada] = 1
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+iterating using forEach
+votos[java] = 6
+votos[python] = 6
+votos[c++] = 5
+votos[javascript] = 8
+votos[ada] = 1
+votos[c] = 3
+votos[bash] = 1
+votos[eiffel] = 0
+*/
+```
+
+## Interface Queue<E>
+
+Uma coleção projetada para conter elementos antes do processamento. Além das operações básicas de coleta, as filas fornecem operações adicionais de inserção, extração e inspeção. Cada um desses métodos existe em duas formas: um lança uma exceção se a operação falhar, o outro retorna um valor especial (nulo ou falso, dependendo da operação). 
+
+Implementações Conhecidas:
+
+* ArrayDeque
+    * Implementação de array redimensionável da interface Deque. Os ArrayDeque não têm restrições de capacidade; eles crescem conforme necessário para suportar o uso.
+    * Elementos nulos são proibidos. 
+    * Essa classe provavelmente será mais rápida que Stack quando usada como pilha e mais rápida que LinkedList quando usada como fila.
+
+* PriorityQueue
+    * Os elementos da fila de prioridade são ordenados de acordo com sua ordenação natural, ou por um Comparator fornecido no momento da construção da fila, dependendo de qual construtor é usado. 
+    * Uma fila de prioridade não permite elementos nulos. 
+    * Uma fila de prioridade que depende de ordenação natural também não permite a inserção de objetos não comparáveis (isso pode resultar em ClassCastException).
+
+### ArrayDeque
+
+```java
+import java.util.ArrayDeque;
+import java.util.Iterator;
+import java.util.Queue;
+
+public class Exemplo9 {
+    public static void main(String[] args) {
+        Queue<Integer> q = new ArrayDeque<Integer>();
+
+        q.add(8);
+        q.add(9);
+        q.add(10);
+        q.add(7);
+
+        
+        Iterator it = q.iterator();
+
+        while( it.hasNext() ){
+            System.out.println( it.next() );
+        }
+
+        while( !q.isEmpty() ){
+            int u = q.poll(); // recupera e remove o primeiro
+            System.out.println(u);
+        }
+
+    }
+}
+```
+
+### PriorityQueue
+
+```java
+import java.util.Iterator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class Exemplo10 {
+    public static void main(String[] args) {
+        Queue<Integer> q = new PriorityQueue<Integer>();
+
+        q.add(8);
+        q.add(9);
+        q.add(10);
+        q.add(7);
+        
+        System.out.println("Iterating over queue");
+        Iterator it = q.iterator();
+        while( it.hasNext() ){
+            System.out.println( it.next() );
+        }
+
+        System.out.println("Retrieve elements from priority queue");
+        while( !q.isEmpty() ){
+            int u = q.poll(); // recupera e remove o primeiro
+            System.out.println(u);
+        }
+
+    }
+}
+```
