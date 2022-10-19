@@ -24,6 +24,10 @@
 
 ## Interface Collection<E>
 
+* Define as operações gerais realizadas em uma coleção de objetos.
+* Essa coleção pode ter diferentes comportamentos. 
+
+
 ![](collection1.png)
 
 ![](collection2.png)
