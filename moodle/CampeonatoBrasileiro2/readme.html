@@ -1,0 +1,78 @@
+<h1 id="campeonato-brasileiro-2">Campeonato Brasileiro 2</h1>
+<h2 id="intro">Intro</h2>
+<p>Você recebeu uma lista de informações dos clubes que estão disputando o campeonato brasileiro: nome do clube, número de pontos, número de vitórias, saldo de gols, número de gols pró. Sua tarefa é montar a tabela de classificação do campeonato brasileiro. No campeonato brasileiro, as equipes são classificadas em ordem decrescente pelo total de pontos. Em caso de empate entre dois ou mais clubes, os critérios de desempate são os seguintes: maior número de vitórias; maior saldo de gols; maior número de gols pró. Persistindo o empate, são usados outros critérios de desempate como: confronto direto; menor número de cartões vermelhos recebidos; menor número de cartões amarelos recebidos. No nosso caso, persistindo o empate, seu programa deve imprimir uma mensagem “Informações insuficientes”.</p>
+<h2 id="guide">Guide</h2>
+<figure>
+<img src="diagrama.png" alt="" /><figcaption>diagrama</figcaption>
+</figure>
+<p>Na linguagem Java, um array de objetos pode ser ordenado utilizando o método Arrays.sort(T[] a, Comparator&lt;? super T&gt; c) que ordena um array de objetos passados por parâmetro de acordo com a ordem induzida pelo Comparator passado.</p>
+<p>A interface Comparator consiste no seguinte método:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">interface</span> <span class="bu">Comparator</span>&lt;T&gt; {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compare</span>(T o1, T o2);</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>}</span></code></pre></div>
+<p>O método compare compara o objeto o1 com o objeto o2 retorna um inteiro negativo, 0 ou um inteiro positivo, dependendo se o objeto o1 é menor, igual ou maior que o objeto o2.</p>
+<h2 id="entrada">Entrada</h2>
+<p><strong>Exemplo de Entrada</strong></p>
+<pre><code>6
+FLAMENGO      31 9  16 30
+ATHLETICO-PR  20 5   -6 17  
+FORTALEZA     30 9   9 19
+INTERNACIONAL 34 10 15 25
+PALMEIRAS     35 10 19 28
+GOIÁS         20 5   -2 16</code></pre>
+<h2 id="saída">Saída</h2>
+<p><strong>Exemplo de Saída</strong></p>
+<pre><code>Equipe [nome=PALMEIRAS, totalPontos=35, totalVitorias=10, saldoGols=19, golsPro=28]
+Equipe [nome=INTERNACIONAL, totalPontos=34, totalVitorias=10, saldoGols=15, golsPro=25]
+Equipe [nome=FLAMENGO, totalPontos=31, totalVitorias=9, saldoGols=16, golsPro=30]
+Equipe [nome=FORTALEZA, totalPontos=30, totalVitorias=9, saldoGols=9, golsPro=19]
+Equipe [nome=GOIÁS, totalPontos=20, totalVitorias=5, saldoGols=-2, golsPro=16]
+Equipe [nome=ATHLETICO-PR, totalPontos=20, totalVitorias=5, saldoGols=-6, golsPro=17]</code></pre>
+<h2 id="solver">Solver</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Arrays;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Comparator;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">class</span> ComparaEquipe <span class="kw">implements</span> <span class="bu">Comparator</span>&lt;Equipe&gt; {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compare</span>(Equipe t1, Equipe t2) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>        </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    }</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">class</span> Equipe {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    <span class="kw">private</span> <span class="bu">String</span> nome;</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">int</span> totalPontos;</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">int</span> totalVitorias;</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">int</span> saldoGols;</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">int</span> golsPro;</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>}</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="kw">class</span> Solver {</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>        <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>        <span class="dt">int</span> n = sc.<span class="fu">nextInt</span>();</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>        Equipe[] equipes = <span class="kw">new</span> Equipe[n];</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>        <span class="bu">String</span> nome;</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>        <span class="dt">int</span> totalPontos, totalVitorias, saldoGols, golsPro;</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a>        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>            nome = sc.<span class="fu">next</span>();</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a>            totalPontos = sc.<span class="fu">nextInt</span>();</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a>            totalVitorias = sc.<span class="fu">nextInt</span>();</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a>            saldoGols = sc.<span class="fu">nextInt</span>();</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a>            golsPro = sc.<span class="fu">nextInt</span>();</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a>            equipes[i] = <span class="kw">new</span> <span class="fu">Equipe</span>(nome, totalPontos, totalVitorias, saldoGols, golsPro);</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a>        }</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a>        <span class="bu">Arrays</span>.<span class="fu">sort</span>(equipes, <span class="kw">new</span> <span class="fu">ComparaEquipe</span>());</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a>        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(equipes[i]);</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true"></a>        }</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true"></a>    }</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true"></a>}</span></code></pre></div>
