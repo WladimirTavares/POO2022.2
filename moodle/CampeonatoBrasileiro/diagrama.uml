@@ -1,0 +1,15 @@
+@startuml
+interface Comparable<T>{
+   int compareTo(T other)
+}
+class Time{
+nome: String
+totalPontos: int
+totalVitorias: Int
+saldoGols: Int
+golsPro: Int
+___
+compareTo(Time t)
+}
+class Time implements Comparable
+@enduml

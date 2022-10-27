@@ -7,7 +7,7 @@ Você recebeu uma lista de informações dos clubes que estão disputando o camp
 
 ## Guide
 
-![diagrama](diagrama.png)
+![diagrama](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/CampeonatoBrasileiro/diagrama.png)
 
 Na linguagem Java, um array de objetos pode ser ordenado utilizando o método Arrays.sort() quando o objeto implementa a interface Comparable. 
 
@@ -18,30 +18,33 @@ public interface Comparable<T> {
 }
 ```
 
-O método compareTo compara o objeto de recebido com o objeto que chama o método e retorna um inteiro negativo, 0 ou um inteiro positivo, dependendo se o objeto de recebido é menor, igual ou maior que o objeto que chama o método. Se o objeto que chama o método não puder ser comparado ao objeto recebido, o método lançará uma ClassCastException.
+O método compareTo compara o objeto de recebido com o objeto que chama o método e retorna um inteiro negativo, 0 ou um inteiro positivo, dependendo se o objeto de recebido é menor, igual ou maior que o objeto que chama o método. Se o objeto que chama o método não puder ser comparado ao objeto recebido, o método lançará uma exceção ClassCastException.
 
 
 ## Entrada 
 
 **Exemplo de Entrada**
-> 6
-> FLAMENGO      31 9  16 30
-> ATHLETICO-PR  20 5   -6 17  
-> FORTALEZA     30 9   9 19
-> INTERNACIONAL 34 10 15 25
-> PALMEIRAS     35 10 19 28
-> GOIÁS         20 5   -2 16
+```
+6
+FLAMENGO      31 9  16 30
+ATHLETICO-PR  20 5   -6 17  
+FORTALEZA     30 9   9 19
+INTERNACIONAL 34 10 15 25
+PALMEIRAS     35 10 19 28
+GOIÁS         20 5   -2 16
+```
 
 ## Saída
 
 **Exemplo de Saída**
-> Equipe [nome=PALMEIRAS, totalPontos=35, totalVitorias=10, saldoGols=19, golsPro=28]
-> Equipe [nome=INTERNACIONAL, totalPontos=34, totalVitorias=10, saldoGols=15, golsPro=25]
-> Equipe [nome=FLAMENGO, totalPontos=31, totalVitorias=9, saldoGols=16, golsPro=30]
-> Equipe [nome=FORTALEZA, totalPontos=30, totalVitorias=9, saldoGols=9, golsPro=19]
-> Equipe [nome=GOIÁS, totalPontos=20, totalVitorias=5, saldoGols=-2, golsPro=16]
-> Equipe [nome=ATHLETICO-PR, totalPontos=20, totalVitorias=5, saldoGols=-6, golsPro=17]
- 
+```
+Equipe [nome=PALMEIRAS, totalPontos=35, totalVitorias=10, saldoGols=19, golsPro=28]
+Equipe [nome=INTERNACIONAL, totalPontos=34, totalVitorias=10, saldoGols=15, golsPro=25]
+Equipe [nome=FLAMENGO, totalPontos=31, totalVitorias=9, saldoGols=16, golsPro=30]
+Equipe [nome=FORTALEZA, totalPontos=30, totalVitorias=9, saldoGols=9, golsPro=19]
+Equipe [nome=GOIÁS, totalPontos=20, totalVitorias=5, saldoGols=-2, golsPro=16]
+Equipe [nome=ATHLETICO-PR, totalPontos=20, totalVitorias=5, saldoGols=-6, golsPro=17]
+``` 
 
 ## Solver 
 

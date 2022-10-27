@@ -7,7 +7,7 @@ Você recebeu uma lista de informações dos clubes que estão disputando o camp
 
 ## Guide
 
-![diagrama](diagrama.png)
+![diagrama](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/CampeonatoBrasileiro2/diagrama.png)
 
 Na linguagem Java, um array de objetos pode ser ordenado utilizando o método Arrays.sort(T[] a, Comparator<? super T> c) que ordena  um array de objetos passados por parâmetro de acordo com a ordem induzida pelo Comparator passado.
 
