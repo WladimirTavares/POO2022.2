@@ -2,11 +2,11 @@
 
 # Intro
 
-Na matemática, uma relação é uma correspondência entre elementos de dois conjuntos não-vazios. Formalmente, se $R$ uma relação definida do conjunto $A$ para o conjunto $B$. O conjunto $A$ é denominado conjunto de partidade e o conjunto $B$ é denominado conjunto de chegada. Então $R$ é qualquer subconjunto do $A \times B$. Por exemplo, se $A = \{2,3,4\}$ e $B  = \{"bola", "carro"\}$. 
+Na matemática, uma relação é uma correspondência entre elementos de dois conjuntos não-vazios. Formalmente, se $R$ uma relação definida do conjunto $A$ para o conjunto $B$. O conjunto $A$ é denominado conjunto de partidade e o conjunto $B$ é denominado conjunto de chegada. Então $R$ é qualquer subconjunto do $A \times B$. Por exemplo, se $A = \{2,3,4\}$ e $B  = \{$"bola", "carro"$\}$. 
 
-* $\{ (2,"bola"), (3, "bola")\}$ é uma relação de $A$ para $B$.
+* $\{ (2,$"bola"$)$, $(3,$ "bola"$)\}$ é uma relação de $A$ para $B$.
 
-* $\{ ("bola",2), ("bola", 3)\}$ é uma relação de $B$ para $A$.
+* $\{ ($"bola"$,2)$, $($"carro"$, 3)\}$ é uma relação de $B$ para $A$.
 
 Um tipo de relação importante é a relação em que o conjunto de partida e chegada são iguais.
 
