@@ -2,15 +2,15 @@
 
 # Intro
 
-Na matemática, uma relação é uma correspondência entre elementos de dois conjuntos não-vazios. Formalmente, se $R$ uma relação definida do conjunto $A$ para o conjunto $B$. O conjunto $A$ é denominado conjunto de partidade e o conjunto $B$ é denominado conjunto de chegada. Então $R$ é qualquer subconjunto do $A \times B$. Por exemplo, se $A = \{2,3,4\}$ e $B  = \{$"bola", "carro"$\}$. 
+Na matemática, uma relação é uma correspondência entre elementos de dois conjuntos não-vazios. Formalmente, se $R$ uma relação definida do conjunto $A$ para o conjunto $B$. O conjunto $A$ é denominado conjunto de partidade e o conjunto $B$ é denominado conjunto de chegada. Então $R$ é qualquer subconjunto do $A \times B$. Por exemplo, se $A = \{2,3,4\}$ e $B  = \{ 5, 6 \}$. 
 
-* $\{ (2,$"bola"$)$, $(3,$ "bola"$)\}$ é uma relação de $A$ para $B$.
+* $\{ (2, 5), (3, 6)\}$ é uma relação de $A$ para $B$.
 
-* $\{ ($"bola"$,2)$, $($"carro"$, 3)\}$ é uma relação de $B$ para $A$.
+* $\{ (6,3), (6,4)\}$ é uma relação de $B$ para $A$.
 
 Um tipo de relação importante é a relação em que o conjunto de partida e chegada são iguais.
 
-Por exemplo, a relaçaõ $\leq$ no conjunto $\mathbb{Z}$ possui vários pares como $(2,2),(2,3), (2,4), \ldots$. A relação $|$ (divide) no conjunto $\mathbb{Z}$ possui uma grande número de pares $(2,4)$,$(4,8)$,$(3,6)$, etc.
+Por exemplo, a relaçaõ $\leq$ no conjunto $\mathbb{Z}$ possui vários pares como $(2,2),(2,3), (2,4), \ldots$. A relação $|$ (divide) no conjunto $\mathbb{Z}$ possui uma grande número de pares $(2,4),(4,8),(3,6)$, etc.
 
 Neste exercício, vamos testar algumas propriedades das relações:
 
