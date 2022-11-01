@@ -18,6 +18,42 @@ bbabab
 bbabbb
 ``` 
 
+**Explicação**
+
+Inicialmente, o conjunto das palavras válidas 
+
+$S = \{?ba??b\}$.
+
+Contudo, o conjunto possui elementos com ?.
+
+
+1. Seja x um elemento de $S = \{?ba??b\}$ 
+2. Considere $x = ?ba??b$ 
+3. A interrogação pode ser substituída por a ou b.
+4. Agora, $S = \{aba??b, bba??b\}$
+5. Seja x um elemento de S. 
+6. Considere $x = aba??b$ 
+7. A interrogação só pode ser substituída por b.
+8. Agora, $S = \{ abab?b, bba??b\}$
+9. Seja x = abab?b um elemento de S. 
+10. A interrogação pode ser substituída por a ou  b.
+11. Agora, $S = \{ababab, ababbb, bba??b\}$
+12. Seja x um elemento de S. 
+13. Considere $x = bba??b$
+14. A interrogação só pode ser substituída por b.
+15. Agora, $S = \{ababab, ababbb, bbab?b\}$
+16. Seja x um elemento de S. 
+17. Considere $x = bbab?b$
+18. A interrogação pode ser substituída por a ou  b.
+19. Agora, $S = \{ababab, ababbb, bbabab, bbabbb\}$
+
+
+Dica: Você pode usar um Collections.TreeSet para guardar os elementos de S. Quando um elemento de S não tem interrogação, ele é mantido no conjunto. Quando um elemento de S não tem interrogação, ele é removido e as substituições são realizadas.
+
+
+
+
+
 # Entrada
 ```
 ??a??b
