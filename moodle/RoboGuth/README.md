@@ -43,9 +43,9 @@ chars[2] = 'b';
 p = String.valueOf(chars)
 ``` 
 
-Você utilizar uma coleção de objetos que armazena os elementos ordenados.
+Você pode utilizar uma coleção de objetos que armazena os elementos de maneira ordenada.
 
-Você pode fazer um algoritmo iterativo que gera iterativamente todo o conjunto de palavras válidas.
+Para gerar todas as palavras válidas, você pode fazer um algoritmo iterativo que gera iterativamente todo o conjunto de palavras válidas.
 
 ```Java
 //Seja s um conjunto de palavras

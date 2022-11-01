@@ -24,6 +24,8 @@ A classe TestRelation cria uma instância da classe Relation. Em seguida, recebe
 
 ![](diagrama.png)
 
+
+
 ## Shell
 
 ```bash
