@@ -87,6 +87,32 @@
 ababbb
 bbabab
 bbabbb</code></pre>
+<p><strong>Explicação</strong></p>
+<p>Inicialmente, o conjunto das palavras válidas</p>
+<p><span class="math inline"><em>S</em> = {?<em>b</em><em>a</em>??<em>b</em>}</span>.</p>
+<p>Contudo, o conjunto possui elementos com ?.</p>
+<ol type="1">
+<li>Seja x um elemento de <span class="math inline"><em>S</em> = {?<em>b</em><em>a</em>??<em>b</em>}</span></li>
+<li>Considere <span class="math inline"><em>x</em> = ?<em>b</em><em>a</em>??<em>b</em></span></li>
+<li>A interrogação pode ser substituída por a ou b.</li>
+<li>Agora, <span class="math inline"><em>S</em> = {<em>a</em><em>b</em><em>a</em>??<em>b</em>, <em>b</em><em>b</em><em>a</em>??<em>b</em>}</span></li>
+<li>Seja x um elemento de S.</li>
+<li>Considere <span class="math inline"><em>x</em> = <em>a</em><em>b</em><em>a</em>??<em>b</em></span></li>
+<li>A interrogação só pode ser substituída por b.</li>
+<li>Agora, <span class="math inline"><em>S</em> = {<em>a</em><em>b</em><em>a</em><em>b</em>?<em>b</em>, <em>b</em><em>b</em><em>a</em>??<em>b</em>}</span></li>
+<li>Seja x = abab?b um elemento de S.</li>
+<li>A interrogação pode ser substituída por a ou b.</li>
+<li>Agora, <span class="math inline"><em>S</em> = {<em>a</em><em>b</em><em>a</em><em>b</em><em>a</em><em>b</em>, <em>a</em><em>b</em><em>a</em><em>b</em><em>b</em><em>b</em>, <em>b</em><em>b</em><em>a</em>??<em>b</em>}</span></li>
+<li>Seja x um elemento de S.</li>
+<li>Considere <span class="math inline"><em>x</em> = <em>b</em><em>b</em><em>a</em>??<em>b</em></span></li>
+<li>A interrogação só pode ser substituída por b.</li>
+<li>Agora, <span class="math inline"><em>S</em> = {<em>a</em><em>b</em><em>a</em><em>b</em><em>a</em><em>b</em>, <em>a</em><em>b</em><em>a</em><em>b</em><em>b</em><em>b</em>, <em>b</em><em>b</em><em>a</em><em>b</em>?<em>b</em>}</span></li>
+<li>Seja x um elemento de S.</li>
+<li>Considere <span class="math inline"><em>x</em> = <em>b</em><em>b</em><em>a</em><em>b</em>?<em>b</em></span></li>
+<li>A interrogação pode ser substituída por a ou b.</li>
+<li>Agora, <span class="math inline"><em>S</em> = {<em>a</em><em>b</em><em>a</em><em>b</em><em>a</em><em>b</em>, <em>a</em><em>b</em><em>a</em><em>b</em><em>b</em><em>b</em>, <em>b</em><em>b</em><em>a</em><em>b</em><em>a</em><em>b</em>, <em>b</em><em>b</em><em>a</em><em>b</em><em>b</em><em>b</em>}</span></li>
+</ol>
+<p>Dica: Você pode usar um Collections.TreeSet para guardar os elementos de S. Quando um elemento de S não tem interrogação, ele é mantido no conjunto. Quando um elemento de S não tem interrogação, ele é removido e as substituições são realizadas.</p>
 <h1 id="entrada-1">Entrada</h1>
 <pre><code>??a??b</code></pre>
 <h1 id="saída-1">Saída</h1>
