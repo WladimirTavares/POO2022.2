@@ -213,3 +213,231 @@ public class TesteGUI3 {
 <p align = "center">
 <b>Estendendo JFrame</b> 
 </p>
+
+**Tratamento de Eventos**
+
+* Um evento é uma ação (ou ocorrência) que é disparada por um acontecimento que pode ter origem humana ou computacional.
+
+* EXEMPLOS DE EVENTOS
+  * Apertar uma tecla do teclado;
+  * Clicar com o botão do mouse;
+  * Tocar a tela de um dispositivo sensível ao toque;
+  * Usar o comando de voz de um TV compatível;
+
+
+**Tipos de eventos**
+* Eventos do Usuário (user-initiated)
+  * Iniciados por um usuário do sistema;
+  * Dependem da iniciativa humana para poderem disparar uma ação.
+* Eventos Automáticos (automatic)
+    * Iniciados pelo sistema computacional;
+    * Dependem da programação do sistema computacional para poderem disparar uma ação
+
+**Eventos do usuário**
+  * Clicar em um botão na tela;
+  * Tocar a tela;
+  * Arrastar algo na tela;
+  * Uma tecla for pressionada
+  * Um ator for clicado
+
+* Em um botão podemos anexar um objeto Listener(Ouvinte) que quando o objeto muda de estado o objeto Listener é avisado e realiza alguma ação.
+
+* Esse objeto implementa a interface ActionListener e possui um método
+void actionPerformed(ActionEvent e)
+
+
+
+**Adicionando um ActionListener**
+
+```Java
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class GUI3 extends JFrame {
+    private JLabel label1;
+    private JTextField textfield1;
+    private JLabel label2;
+    private JTextField textfield2;
+    private JButton button1;
+    private JLabel label3;
+    private JTextField textfield3;
+
+    public GUI3() {
+        super("Somando números");
+
+        label1 = new JLabel("Entre com um número");
+        ;
+        textfield1 = new JTextField(10);
+        label2 = new JLabel("Entre com um número");
+        textfield2 = new JTextField(10);
+        button1 = new JButton("OK");
+        label3 = new JLabel("Resultado: ");
+        textfield3 = new JTextField(10);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(label1);
+        add(textfield1);
+        add(label2);
+        add(textfield2);
+
+        add(button1);
+
+        add(label3);
+        add(textfield3);
+        ButtonHandler handler = new ButtonHandler();
+        button1.addActionListener(handler);
+    }
+
+    private class ButtonHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            int n1 = Integer.parseInt(textfield1.getText());
+            int n2 = Integer.parseInt(textfield2.getText());
+            Integer res = n1 + n2;
+            System.out.println("chamando\n");
+            textfield3.setText(res.toString());
+        }
+    }
+
+}
+```
+
+**Usando um classe anônima ActionListener**
+
+```Java
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class GUI4 extends JFrame {
+    private JLabel label1;
+    private JTextField textfield1;
+    private JLabel label2;
+    private JTextField textfield2;
+    private JButton button1;
+    private JLabel label3;
+    private JTextField textfield3;
+
+    public GUI4() {
+        super("Somando números");
+
+        label1 = new JLabel("Entre com um número");
+        textfield1 = new JTextField(10);
+        label2 = new JLabel("Entre com um número");
+        textfield2 = new JTextField(10);
+        button1 = new JButton("OK");
+        label3 = new JLabel("Resultado: ");
+        textfield3 = new JTextField(10);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(label1);
+        add(textfield1);
+        add(label2);
+        add(textfield2);
+
+        add(button1);
+
+        add(label3);
+        add(textfield3);
+        
+
+        button1.addActionListener( new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int n1 = Integer.parseInt(textfield1.getText());
+                int n2 = Integer.parseInt(textfield2.getText());
+                Integer res = n1 + n2;
+                System.out.println("chamando\n");
+                textfield3.setText(res.toString());
+            }
+        } );
+    }
+
+    
+
+}
+```
+
+**Trabalhando com JList**
+
+<p align="center">
+<img src="GUI6.png">
+</p>
+<p align = "center">
+<b>Trabalhando com um JList</b> 
+</p>
+
+
+```Java
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.ListSelectionModel;
+import java.util.List;
+import java.text.Bidi;
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class GUI5 extends JFrame {
+    JList lista;
+    DefaultListModel listModel;
+    JLabel label1;
+    JTextField textField1;
+    JTextArea textArea1;
+    JButton button1;
+
+    public GUI5() {
+        super("Lista de Frutas");
+
+        listModel = new DefaultListModel<>();
+
+        listModel.addElement("maça");
+        listModel.addElement("banana");
+
+        lista = new JList<>(listModel);
+        lista.setSelectionMode(
+                ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+        textArea1 = new JTextArea(10, 50);
+        label1 = new JLabel("Fruta");
+        textField1 = new JTextField(20);
+        button1 = new JButton("Adicionar Fruta");
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(lista);
+        add(label1);
+        add(textField1);
+        add(button1);
+
+        button1.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        listModel.addElement(textField1.getText());
+                        textField1.setText("");
+                    }
+                });
+
+    }
+
+}
+
+```
+
+

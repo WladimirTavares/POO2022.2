@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUI3 extends JFrame {
+public class GUI4 extends JFrame {
     private JLabel label1;
     private JTextField textfield1;
     private JLabel label2;
@@ -16,11 +16,10 @@ public class GUI3 extends JFrame {
     private JLabel label3;
     private JTextField textfield3;
 
-    public GUI3() {
+    public GUI4() {
         super("Somando números");
 
         label1 = new JLabel("Entre com um número");
-        ;
         textfield1 = new JTextField(10);
         label2 = new JLabel("Entre com um número");
         textfield2 = new JTextField(10);
@@ -37,19 +36,19 @@ public class GUI3 extends JFrame {
 
         add(label3);
         add(textfield3);
-        ButtonHandler handler = new ButtonHandler();
+        
 
-        button1.addActionListener(handler);
+        button1.addActionListener( new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int n1 = Integer.parseInt(textfield1.getText());
+                int n2 = Integer.parseInt(textfield2.getText());
+                Integer res = n1 + n2;
+                System.out.println("chamando\n");
+                textfield3.setText(res.toString());
+            }
+        } );
     }
 
-    private class ButtonHandler implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
-            int n1 = Integer.parseInt(textfield1.getText());
-            int n2 = Integer.parseInt(textfield2.getText());
-            Integer res = n1 + n2;
-            System.out.println("chamando\n");
-            textfield3.setText(res.toString());
-        }
-    }
+    
 
 }
