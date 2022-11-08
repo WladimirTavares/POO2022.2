@@ -32,15 +32,24 @@ public class Main {
             System.out.println("4. Quit");
             System.out.print("Entre your choice: ");
             choice = sc.next().charAt(0);
-            
-            switch(choice) {
-                case '1': addCar(carList); break;
-                case '2': removeCar(carList); break;
-                case '3': listAll(carList); break;
-                case '4': writeList(carList); break; // write to the file
-                default : System.out.print("\nPlease choose a number from 1-4 only\n");
+
+            switch (choice) {
+                case '1':
+                    addCar(carList);
+                    break;
+                case '2':
+                    removeCar(carList);
+                    break;
+                case '3':
+                    listAll(carList);
+                    break;
+                case '4':
+                    writeList(carList);
+                    break; // write to the file
+                default:
+                    System.out.print("\nPlease choose a number from 1-4 only\n");
             }
-        } while(choice != '4');
+        } while (choice != '4');
     }
 
     // method to add a new car to the List
@@ -50,27 +59,25 @@ public class Main {
         double tempPrice;
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Please enter the registration number: ");
-        tempReg = sc.next();
         System.out.print("Please enter the make: ");
         tempMake = sc.next();
         System.out.print("Please enter the price: ");
         tempPrice = sc.nextDouble();
-        carListIn.add(new Car(tempReg, tempMake, tempPrice));
+        carListIn.add(new Car(tempMake, tempPrice));
     }
 
-    // method for removing a car from the list 
+    // method for removing a car from the list
     static void removeCar(List<Car> carListIn) {
         int pos;
         System.out.print("Enter the position of the car to be removed: ");
         Scanner sc = new Scanner(System.in);
         pos = sc.nextInt();
-        carListIn.remove(pos-1);
+        carListIn.remove(pos - 1);
     }
 
     // method for listing details of all cars in the list
     static void listAll(List<Car> carListIn) {
-        for(Car item : carListIn) {
+        for (Car item : carListIn) {
             System.out.println(item);
         }
     }
@@ -79,20 +86,19 @@ public class Main {
     static void writeList(List<Car> carListIn) {
         // use try-with-resources to ensure file is closed safely
         try (
-                /* create a FileOutputStream object, carFile, that handles
-                the low-level details of writing the list to a file 
-                which we have called "Cars.ser" */
+                /*
+                 * create a FileOutputStream object, carFile, that handles
+                 * the low-level details of writing the list to a file
+                 * which we have called "Cars.ser"
+                 */
                 FileOutputStream carFile = new FileOutputStream("Cars.ser");
                 // create an ObjectOutputStream object to wrap around carFile
-                ObjectOutputStream carStream = new ObjectOutputStream(carFile);
-            )
-        {
+                ObjectOutputStream carStream = new ObjectOutputStream(carFile);) {
             // write each element of the list to the file
-            for(Car item : carListIn) {
+            for (Car item : carListIn) {
                 carStream.writeObject(item);
             }
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("There was a problem writing the file");
         }
     }
@@ -104,36 +110,29 @@ public class Main {
 
         // use try-with-resources to ensure file is closed safely
         try (
-                // create a FileInputStream object that handles the low-level 
-                // details of reading the list from the "Cars.ser" file 
+                // create a FileInputStream object that handles the low-level
+                // details of reading the list from the "Cars.ser" file
                 FileInputStream carFile = new FileInputStream("Cars.ser");
                 // create an ObjectInputStream object to wrap around carFile
-                ObjectInputStream carStream = new ObjectInputStream(carFile);
-            )
-        {
-            while(endOfFile == false) { 
+                ObjectInputStream carStream = new ObjectInputStream(carFile);) {
+            while (endOfFile == false) {
                 try {
                     // read a whole object
                     tempCar = (Car) carStream.readObject();
                     carListIn.add(tempCar);
-                }
-                catch(EOFException e) {
+                } catch (EOFException e) {
                     // use the fact that readObject throws an EOFException
                     // to check whether the end of the filehas been reached
                     endOfFile = true;
-                }                
+                }
             }
-        }
-        catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("\nNo previous file was read");
-        }
-        catch(ClassNotFoundException e) { // thrown by readObject
+        } catch (ClassNotFoundException e) { // thrown by readObject
             System.out.println("\nTrying to read an object of an unknown class");
-        }
-        catch(StreamCorruptedException e) { // thrown by the constructor ObjectInputStream
+        } catch (StreamCorruptedException e) { // thrown by the constructor ObjectInputStream
             System.out.println("\nUnreadable file format");
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("\nerror: There was a problem reading the file");
         }
     }

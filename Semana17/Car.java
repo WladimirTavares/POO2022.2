@@ -1,18 +1,22 @@
+
 // Classe Car serializável para armazenar carros como objetos
 import java.io.Serializable;
 
 public class Car implements Serializable {
-    private String registration; 
-    private transient String make; // marcado como "transient"
+    private static int number = 1;
+    private int registration;
+    private String make;
     private double price;
+    private ArrayList<String> acessorio;
 
-    public Car(String registration, String make, double price) {
-        this.registration = registration;
+    public Car(String make, double price) {
+        this.registration = number;
         this.make = make;
         this.price = price;
+        number++;
     }
 
-    public String getRegistration() {
+    public int getRegistration() {
         return registration;
     }
 
@@ -26,7 +30,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Registration: %s, Make: %s, Price: %.2f", 
-            getRegistration(), getMake(), getPrice());
+        return String.format("Registration: %s, Make: %s, Price: %.2f",
+                getRegistration(), getMake(), getPrice());
     }
 }

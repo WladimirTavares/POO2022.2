@@ -306,6 +306,63 @@ hello.dat
 
 ![](io3.png)
 
+## Classe Scanner
+
+Todas as interfaces implementas: ```Closeable, AutoCloseable, Iterator<String>```
+
+Uma classe que implementa Closeable é uma origem ou destino de dados que pode ser fechado. O método close é invocado para liberar recursos que o objeto está mantendo (como arquivos abertos).
+
+Uma classe que implementa AutoCloseable fecha este recurso, abandonando quaisquer outros recursos subjacentes.
+
+
+Um analisador de texto simples que pode reconhecer tipos primitivos e strings usando expressões regulares.
+
+Um Scanner divide sua entrada em tokens usando um padrão delimitador, que por padrão corresponde a espaços em branco. Os tokens resultantes podem então ser convertidos em valores de diferentes tipos usando os vários métodos.
+
+```Java
+Scanner sc = new Scanner(System.in);
+int i = sc.nextInt();
+``` 
+
+O scanner também pode usar delimitadores que não sejam espaços em branco. Este exemplo lê vários itens de uma string:
+
+```Java
+     String input = "1 fish 2 fish red fish blue fish";
+     Scanner s = new Scanner(input).useDelimiter("\\s*fish\\s*");
+     System.out.println(s.nextInt());
+     System.out.println(s.nextInt());
+     System.out.println(s.next());
+     System.out.println(s.next());
+     s.close(); 
+```
+
+Imprimindo
+```
+1
+2
+red
+blue 
+```
+O mesmo pode ser feito com o seguinte código:
+
+```
+String input = "1 fish 2 fish red fish blue fish";
+Scanner s = new Scanner(input);
+s.findInLine("(\\d+) fish (\\d+) fish (\\w+) fish (\\w+)");
+MatchResult result = s.match();
+for (int i=1; i<=result.groupCount(); i++)
+    System.out.println(result.group(i));
+s.close(); 
+```
+**Construtor**
+
+```
+public Scanner(InputStream source)
+```
+
+Constrói um novo Scanner que produz valores verificados do fluxo de entrada especificado. Os bytes do fluxo são convertidos em caracteres usando o conjunto de caracteres padrão da plataforma subjacente.
+
+
 ## Serialização de Objetos
 * Serialização: consiste em representar um objeto como uma sequência de
 bytes.

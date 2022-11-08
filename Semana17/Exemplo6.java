@@ -9,9 +9,9 @@ import java.nio.charset.StandardCharsets;
 public class Exemplo6 {
     public static void main(String[] args) {
         try {
-            FileWriter fstream = new FileWriter("hello.out", StandardCharsets.UTF_8, false);
+            FileWriter fstream = new FileWriter("hello.out", StandardCharsets.UTF_8, true);
             
-            fstream.write("Hello OutputStream characteres!!!");
+            fstream.write("Hello OutputStream characteres!!!\n");
             fstream.close();
 
         } catch (Exception e) {

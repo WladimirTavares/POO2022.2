@@ -1,0 +1,566 @@
+<h2 id="entrada-e-saída">Entrada e Saída</h2>
+<p>Na linguagem Java, o controle de entrada e saída de dados (conhecido como io) também é orientada a objetos e utiliza vários conceitos de OO como: interfaces, classes abstratas e polimorfismo.</p>
+<p>Na linguagem Java, um canal de comunicação chamado de <em>stream</em> (fluxo) é estabelecido entre o dispositivo (teclado, arquivo) e a memória RAM.</p>
+<p>Esses canais de comunicação podem ser de entrada ou saída.</p>
+<p><img src="io1.png" /></p>
+<p>As operações sobre os <strong>stream</strong> de entrada e saída são as mesmas independente de ser um arquivo, uma conexão remota via sockets, console ou campo blob de um banco de dados.</p>
+<h2 id="inputstream-e-outputstream">InputStream e OutputStream</h2>
+<p>As classes abstratas InputStream e OutputStream definem o comportamento padrão dos fluxos de entrada e saída de bytes.</p>
+<p>A classe abstrata InputStream possui várias subclasses conhecidas como <code>AudioInputStream, ByteArrayInputStream, FileInputStream, FilterInputStream, InputStream, ObjectInputStream, PipedInputStream, SequenceInputStream, StringBufferInputStream</code></p>
+<p>A classe abstrada OutputStream possui várias subclasses conhecidas conhecidas como <code>ByteArrayOutputStream, FileOutputStream, FilterOutputStream, ObjectOutputStream, OutputStream, PipedOutputStream</code></p>
+<p><strong>InputStream</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileInputStream;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStream;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">class</span> Exemplo1 {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>        <span class="kw">try</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>            <span class="bu">InputStream</span> is = <span class="kw">new</span> <span class="bu">FileInputStream</span>(<span class="st">&quot;hello.txt&quot;</span>);</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>            <span class="dt">int</span> data;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>            data = is.<span class="fu">read</span>();</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>            <span class="dt">int</span> cont = <span class="dv">0</span>;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>            <span class="kw">while</span> (data != -<span class="dv">1</span>) {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Char : &quot;</span> + (<span class="dt">char</span>) data);</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>                <span class="kw">if</span> ((<span class="dt">char</span>) data == <span class="ch">&#39;l&#39;</span>) {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>                    is.<span class="fu">skip</span>(<span class="dv">1</span>);</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>                }</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>                <span class="kw">if</span> ((<span class="dt">char</span>) data == <span class="ch">&#39;!&#39;</span>) {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>                    cont++;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>                    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(cont);</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>                    <span class="kw">if</span> (cont == <span class="dv">1</span>) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>                        is.<span class="fu">mark</span>(<span class="dv">0</span>);</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>                    } <span class="kw">else</span> <span class="kw">if</span> (cont == <span class="dv">2</span>) {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>                        <span class="kw">if</span> (is.<span class="fu">markSupported</span>()) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>                            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;reset() chamado&quot;</span>);</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>                            is.<span class="fu">reset</span>();</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>                        } <span class="kw">else</span> {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>                            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;reset() nao suportado&quot;</span>);</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>                        }</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>                    }</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>                }</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>                data = is.<span class="fu">read</span>();</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>            }</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>        } <span class="kw">catch</span> (<span class="bu">Exception</span> e) {</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>        }</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>    }</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>}</span></code></pre></div>
+<p><strong>OutputStream</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileOutputStream;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStream;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.OutputStream;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">class</span> Exemplo2 {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>        <span class="kw">try</span> {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>            <span class="bu">OutputStream</span> out = <span class="kw">new</span> <span class="bu">FileOutputStream</span>(<span class="st">&quot;hello.out&quot;</span>);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>            <span class="bu">String</span> s = <span class="st">&quot;Hello World&quot;</span>;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>            <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; s.<span class="fu">length</span>(); i++){</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>                out.<span class="fu">write</span>( s.<span class="fu">charAt</span>(i) );</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>            }</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>            out.<span class="fu">close</span>();</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>        } <span class="kw">catch</span> (<span class="bu">Exception</span> e) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>        }</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    }</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>}</span></code></pre></div>
+<h2 id="classe-abstrata-reader">Classe Abstrata Reader</h2>
+<p>A classe abstrata Reader é utilizada para a leitura de fluxo de caracteres.</p>
+<p>Subclasses conhecidas da classe Reader: <code>BufferedReader, CharArrayReader, FilterReader, InputStreamReader, PipedReader, StringReader</code></p>
+<h2 id="inputstreamreader">InputStreamReader</h2>
+<p>Em alguns casos, precisamos de uma ponte para converter um fluxo de bytes em um fluxo de caracteres. O fluxo de bytes pode utilizar diferentes formatos de codificação dos caracteres como:</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Charset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>US-ASCII</td>
+<td>Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set</td>
+</tr>
+<tr class="even">
+<td>ISO-8859-1</td>
+<td>ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1</td>
+</tr>
+<tr class="odd">
+<td>UTF-8</td>
+<td>Eight-bit UCS Transformation Format</td>
+</tr>
+<tr class="even">
+<td>UTF-16BE</td>
+<td>Sixteen-bit UCS Transformation Format, big-endian byte order</td>
+</tr>
+<tr class="odd">
+<td>UTF-16LE</td>
+<td>Sixteen-bit UCS Transformation Format, little-endian byte order</td>
+</tr>
+<tr class="even">
+<td>UTF-16</td>
+<td>Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark</td>
+</tr>
+</tbody>
+</table>
+<p>Neste caso, utilizamos a classe InputStreamReader realiza essa ponte entre um stream de bytes e um stream de caracteres codificados.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileInputStream;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStream;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStreamReader;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Exemplo3 {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>        <span class="kw">try</span>{</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>            <span class="bu">InputStream</span> is = <span class="kw">new</span> <span class="bu">FileInputStream</span>(<span class="st">&quot;hello.txt&quot;</span>);</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>            <span class="bu">InputStreamReader</span> isr = <span class="kw">new</span> <span class="bu">InputStreamReader</span>(is, StandardCharsets.<span class="fu">UTF_8</span>);</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>            <span class="dt">int</span> data;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>            data = isr.<span class="fu">read</span>();</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>            <span class="kw">while</span> (data != -<span class="dv">1</span>) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Char : &quot;</span> + (<span class="dt">char</span>) data);</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>                data = isr.<span class="fu">read</span>();</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>            }</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>        }<span class="kw">catch</span>(<span class="bu">Exception</span> e){</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>        }</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    }</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>}</span></code></pre></div>
+<h2 id="bufferedreader">BufferedReader</h2>
+<p>Note que a leitura de uma String seria complicada usando InputStream. A classe BufferedReader resolve esse problema.</p>
+<p><img src="io2.png" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.BufferedReader;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStream;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStreamReader;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileInputStream;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Exemplo4 {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>        <span class="kw">try</span>{</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>            <span class="bu">InputStream</span> is = <span class="kw">new</span> <span class="bu">FileInputStream</span>(<span class="st">&quot;hello.txt&quot;</span>);</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>            <span class="bu">InputStreamReader</span> isr = <span class="kw">new</span> <span class="bu">InputStreamReader</span>(is, <span class="st">&quot;UTF-8&quot;</span>);</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>            <span class="bu">BufferedReader</span> br = <span class="kw">new</span> <span class="bu">BufferedReader</span>(isr);</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>( br.<span class="fu">readLine</span>() );</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>        }<span class="kw">catch</span>(<span class="bu">Exception</span> e){</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>        }</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    }</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>}</span></code></pre></div>
+<h2 id="classe-writer">Classe Writer</h2>
+<p>A classe Writer é uma classe abstrata para a escrita de fluxo de caracteres.</p>
+<p>A classe Writer possui as seguintes subclasses diretas conhecidas: <code>BufferedWriter, CharArrayWriter, FilterWriter, OutputStreamWriter, PipedWriter, PrintWriter, StringWriter</code></p>
+<h2 id="classe-bufferedwriter">Classe BufferedWriter</h2>
+<p>Essa classe é usada para escrever textos em uma fluxo de caracteres de saída.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.OutputStreamWriter;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileOutputStream;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.BufferedWriter;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Exemplo5 {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>        <span class="kw">try</span> {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>            <span class="bu">OutputStream</span> out = <span class="kw">new</span> <span class="bu">FileOutputStream</span>(<span class="st">&quot;hello.out&quot;</span>);</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>            <span class="bu">OutputStreamWriter</span> osr = <span class="kw">new</span> <span class="bu">OutputStreamWriter</span>(out, <span class="st">&quot;UTF-8&quot;</span>);</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>            <span class="bu">BufferedWriter</span> bw = <span class="kw">new</span> <span class="bu">BufferedWriter</span>(osr);</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>            bw.<span class="fu">write</span>(<span class="st">&quot;Hello World!!!&quot;</span>);</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>            bw.<span class="fu">close</span>();</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>        } <span class="kw">catch</span> (<span class="bu">Exception</span> e) {</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>        }</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>    }</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>}</span></code></pre></div>
+<h2 id="classe-filewriter">Classe FileWriter</h2>
+<p>Essa classe utilizada para criar arquivos de textos para gravação de caracteres.</p>
+<pre><code>import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
+
+public class Exemplo6 {
+    public static void main(String[] args) {
+        try {
+            FileWriter fstream = new FileWriter(&quot;hello.out&quot;, StandardCharsets.UTF_8, false);
+            
+            fstream.write(&quot;Hello OutputStream characteres!!!&quot;);
+            fstream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+<h2 id="classe-printwriter">Classe PrintWriter</h2>
+<p>Permite a impressão formatada de objetos no fluxo de saída.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.PrintWriter;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.nio.charset.StandardCharsets;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">class</span> Student{</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>    <span class="bu">String</span> nome;</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>    <span class="dt">int</span> matricula;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>    <span class="kw">public</span> <span class="fu">Student</span>(<span class="bu">String</span> nome, <span class="dt">int</span> matricula) {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>        <span class="kw">this</span>.<span class="fu">nome</span> = nome;</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>        <span class="kw">this</span>.<span class="fu">matricula</span> = matricula;</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>    }</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>    <span class="at">@Override</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span>() {</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>        <span class="kw">return</span> <span class="st">&quot;Student [nome=&quot;</span> + nome + <span class="st">&quot;, matricula=&quot;</span> + matricula + <span class="st">&quot;]&quot;</span>;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>    }</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Exemplo7 {</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>        <span class="kw">try</span> {</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>            <span class="bu">PrintWriter</span> out = <span class="kw">new</span> <span class="bu">PrintWriter</span>(<span class="st">&quot;hello.out&quot;</span>, StandardCharsets.<span class="fu">UTF_8</span>);</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a>            Student s = <span class="kw">new</span> <span class="fu">Student</span>(<span class="st">&quot;joao&quot;</span>, <span class="dv">0</span>);</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a>            out.<span class="fu">println</span>(<span class="st">&quot;Hello OutputStream characteres!!!&quot;</span>);</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a>            out.<span class="fu">println</span>(s);</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a>            out.<span class="fu">close</span>();</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a>        } <span class="kw">catch</span> (<span class="bu">Exception</span> e) {</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true"></a>        }</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true"></a>    }</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true"></a>}</span></code></pre></div>
+<h2 id="classe-datainputstream-e-dataoutputstream">Classe DataInputStream e DataOutputStream</h2>
+<p>Permite a escrita e a leitura de tipos de dados primitivos Java de uma maneira portável (em binário).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.DataInputStream;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.DataOutputStream;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileInputStream;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileOutputStream;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.InputStream;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.OutputStream;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Exemplo8 {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>        <span class="kw">try</span> {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>            <span class="bu">OutputStream</span> os = <span class="kw">new</span> <span class="bu">FileOutputStream</span>(<span class="st">&quot;hello.dat&quot;</span>);</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>            <span class="bu">DataOutputStream</span> out = <span class="kw">new</span> <span class="bu">DataOutputStream</span>(os);</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>            out.<span class="fu">writeInt</span>(<span class="dv">45</span>);</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>            out.<span class="fu">writeDouble</span>(<span class="fl">2.</span><span class="dv">35</span>);</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>            out.<span class="fu">close</span>();</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>            <span class="bu">InputStream</span> is = <span class="kw">new</span> <span class="bu">FileInputStream</span>(<span class="st">&quot;hello.dat&quot;</span>);</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>            <span class="bu">DataInputStream</span> in = <span class="kw">new</span> <span class="bu">DataInputStream</span>(is);</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>( in.<span class="fu">readInt</span>() );</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>( in.<span class="fu">readDouble</span>() );</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a>            in.<span class="fu">close</span>();</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a>            </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a>        } <span class="kw">catch</span> (<span class="bu">Exception</span> e) {</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a>            e.<span class="fu">printStackTrace</span>();</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a>        }</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a>    }</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true"></a>}</span></code></pre></div>
+<p>hello.dat</p>
+<pre><code>\00\00\00-@\CC\CC\CC\CC\CC\CD</code></pre>
+<p><img src="io3.png" /></p>
+<h2 id="classe-scanner">Classe Scanner</h2>
+<p>Todas as interfaces implementas: <code>Closeable, AutoCloseable, Iterator&lt;String&gt;</code></p>
+<p>Uma classe que implementa Closeable é uma origem ou destino de dados que pode ser fechado. O método close é invocado para liberar recursos que o objeto está mantendo (como arquivos abertos).</p>
+<p>Uma classe que implementa AutoCloseable fecha este recurso, abandonando quaisquer outros recursos subjacentes.</p>
+<p>Um analisador de texto simples que pode reconhecer tipos primitivos e strings usando expressões regulares.</p>
+<p>Um Scanner divide sua entrada em tokens usando um padrão delimitador, que por padrão corresponde a espaços em branco. Os tokens resultantes podem então ser convertidos em valores de diferentes tipos usando os vários métodos.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="dt">int</span> i = sc.<span class="fu">nextInt</span>();</span></code></pre></div>
+<p>O scanner também pode usar delimitadores que não sejam espaços em branco. Este exemplo lê vários itens de uma string:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>     <span class="bu">String</span> input = <span class="st">&quot;1 fish 2 fish red fish blue fish&quot;</span>;</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>     <span class="bu">Scanner</span> s = <span class="kw">new</span> <span class="bu">Scanner</span>(input).<span class="fu">useDelimiter</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s*fish</span><span class="sc">\\</span><span class="st">s*&quot;</span>);</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>     <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(s.<span class="fu">nextInt</span>());</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>     <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(s.<span class="fu">nextInt</span>());</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>     <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(s.<span class="fu">next</span>());</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>     <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(s.<span class="fu">next</span>());</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>     s.<span class="fu">close</span>(); </span></code></pre></div>
+<p>Imprimindo</p>
+<pre><code>1
+2
+red
+blue </code></pre>
+<p>O mesmo pode ser feito com o seguinte código:</p>
+<pre><code>String input = &quot;1 fish 2 fish red fish blue fish&quot;;
+Scanner s = new Scanner(input);
+s.findInLine(&quot;(\\d+) fish (\\d+) fish (\\w+) fish (\\w+)&quot;);
+MatchResult result = s.match();
+for (int i=1; i&lt;=result.groupCount(); i++)
+    System.out.println(result.group(i));
+s.close(); </code></pre>
+<p><strong>Construtor</strong></p>
+<pre><code>public Scanner(InputStream source)</code></pre>
+<p>Constrói um novo Scanner que produz valores verificados do fluxo de entrada especificado. Os bytes do fluxo são convertidos em caracteres usando o conjunto de caracteres padrão da plataforma subjacente.</p>
+<h2 id="serialização-de-objetos">Serialização de Objetos</h2>
+<ul>
+<li>Serialização: consiste em representar um objeto como uma sequência de bytes.
+<ul>
+<li>Um objeto serializado é um objeto representado como uma sequência de bytes que inclui os dados do objeto assim como as informações sobre o tipo do objeto e os tipos dos dados armazenados no objeto.</li>
+<li>Um objeto é serializado pode ser transmitido por uma stream e armazenado em disco.</li>
+</ul></li>
+<li>Desserialização: consiste em reconstruir um objeto a partir de uma sequência de bytes.
+<ul>
+<li>O objeto é lido a partir do arquivo por meio de uma stream.</li>
+<li>Então, ele é desserializado e reconstruı́do na memória do computador.</li>
+</ul></li>
+</ul>
+<p><img src="io4.png" /></p>
+<h2 id="objectoutputstream-e-objectinputstream">ObjectOutputStream e ObjectInputStream</h2>
+<ul>
+<li><p>ObjectOutputStream: permite a serialização de uma estrutura de objetos num dispositivo de saı́da. Implementa a interface ObjectOutput</p></li>
+<li><p>ObjectInputStream: permite a desserialização de objetos a partir de dados lidos de um dispositivo de entrada. Implementa a interface ObjectInput</p></li>
+</ul>
+<p><img src="io5.png" /></p>
+<h2 id="interface-serializable">Interface Serializable</h2>
+<ul>
+<li>A interface java.io.Serializable deve ser implementada pelas classes a serem serializadas.</li>
+<li>Esta interface é apenas de marcação, pois não tem nenhum atributo e nenhum método a ser implementado, serve apenas para que a JVM saiba que aquela determinada classe está hábil para ser serializada.</li>
+<li>Por padrão, todas as variáveis de tipo nativo e do tipo String são serializáveis. Arrays também são serializáveis. Todas as coleções do Java são serializáveis.</li>
+<li>Para demais variáveis do tipo referência, você deve checar a documentação da classe e de suas superclasses para determinar se ela é serializável.</li>
+<li>Em uma classe Serializable, todas os atributos de instância devem ser Serializable.</li>
+<li>Toda variável de instância que for não-serializável deve ser declarada transient para indicar que elas deveriam ser ignoradas durante o processo de serialização.</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="co">// Classe Car serializável para armazenar carros como objetos</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.Serializable;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Car <span class="kw">implements</span> <span class="bu">Serializable</span> {</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>    <span class="kw">private</span> <span class="bu">String</span> registration; </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>    <span class="kw">private</span> <span class="kw">transient</span> <span class="bu">String</span> make; <span class="co">// marcado como &quot;transient&quot;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>    <span class="kw">private</span> <span class="dt">double</span> price;</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>    <span class="kw">public</span> <span class="fu">Car</span>(<span class="bu">String</span> registration, <span class="bu">String</span> make, <span class="dt">double</span> price) {</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a>        <span class="kw">this</span>.<span class="fu">registration</span> = registration;</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a>        <span class="kw">this</span>.<span class="fu">make</span> = make;</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a>        <span class="kw">this</span>.<span class="fu">price</span> = price;</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a>    }</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">getRegistration</span>() {</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a>        <span class="kw">return</span> registration;</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true"></a>    }</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">getMake</span>() {</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true"></a>        <span class="kw">return</span> make;</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true"></a>    }</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getPrice</span>() {</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true"></a>        <span class="kw">return</span> price;</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true"></a>    }</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true"></a>    <span class="at">@Override</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span>() {</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true"></a>        <span class="kw">return</span> <span class="bu">String</span><span class="fu">.format</span>(<span class="st">&quot;Registration: </span><span class="sc">%s</span><span class="st">, Make: </span><span class="sc">%s</span><span class="st">, Price: </span><span class="sc">%.2f</span><span class="st">&quot;</span>, </span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true"></a>            <span class="fu">getRegistration</span>(), <span class="fu">getMake</span>(), <span class="fu">getPrice</span>());</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true"></a>    }</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Main.java</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.ArrayList;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.List;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Locale;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.IOException;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.ObjectInputStream;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.ObjectOutputStream;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.StreamCorruptedException;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.EOFException;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileInputStream;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileNotFoundException;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a><span class="kw">import</span><span class="im"> java.io.FileOutputStream;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> Main {</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true"></a>        <span class="bu">Locale</span>.<span class="fu">setDefault</span>(<span class="bu">Locale</span>.<span class="fu">US</span>);</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true"></a>        <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true"></a>        <span class="dt">char</span> choice;</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true"></a>        <span class="co">// create an empty List to hold Cars</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true"></a>        <span class="bu">List</span>&lt;Car&gt; carList = <span class="kw">new</span> <span class="bu">ArrayList</span>&lt;&gt;();</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true"></a>        <span class="co">// read the list from file when the program starts</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true"></a>        <span class="fu">readList</span>(carList);</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true"></a>        <span class="co">// menu options</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true"></a>        <span class="kw">do</span> {</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Text File Tester&quot;</span>);</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;1. Add a car&quot;</span>);</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;2. Remove a car&quot;</span>);</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;3. List all cars&quot;</span>);</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;4. Quit&quot;</span>);</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Entre your choice: &quot;</span>);</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true"></a>            choice = sc.<span class="fu">next</span>().<span class="fu">charAt</span>(<span class="dv">0</span>);</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true"></a>            </span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true"></a>            <span class="kw">switch</span>(choice) {</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true"></a>                <span class="kw">case</span> <span class="ch">&#39;1&#39;</span>: <span class="fu">addCar</span>(carList); <span class="kw">break</span>;</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true"></a>                <span class="kw">case</span> <span class="ch">&#39;2&#39;</span>: <span class="fu">removeCar</span>(carList); <span class="kw">break</span>;</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true"></a>                <span class="kw">case</span> <span class="ch">&#39;3&#39;</span>: <span class="fu">listAll</span>(carList); <span class="kw">break</span>;</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true"></a>                <span class="kw">case</span> <span class="ch">&#39;4&#39;</span>: <span class="fu">writeList</span>(carList); <span class="kw">break</span>; <span class="co">// write to the file</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true"></a>                <span class="kw">default</span> : <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Please choose a number from 1-4 only</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true"></a>            }</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true"></a>        } <span class="kw">while</span>(choice != <span class="ch">&#39;4&#39;</span>);</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true"></a>    }</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true"></a></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true"></a>    <span class="co">// method to add a new car to the List</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">addCar</span>(<span class="bu">List</span>&lt;Car&gt; carListIn) {</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true"></a>        <span class="bu">String</span> tempReg;</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true"></a>        <span class="bu">String</span> tempMake;</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true"></a>        <span class="dt">double</span> tempPrice;</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true"></a>        <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Please enter the registration number: &quot;</span>);</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true"></a>        tempReg = sc.<span class="fu">next</span>();</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Please enter the make: &quot;</span>);</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true"></a>        tempMake = sc.<span class="fu">next</span>();</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Please enter the price: &quot;</span>);</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true"></a>        tempPrice = sc.<span class="fu">nextDouble</span>();</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true"></a>        carListIn.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Car</span>(tempReg, tempMake, tempPrice));</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true"></a>    }</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true"></a>    <span class="co">// method for removing a car from the list </span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">removeCar</span>(<span class="bu">List</span>&lt;Car&gt; carListIn) {</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true"></a>        <span class="dt">int</span> pos;</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Enter the position of the car to be removed: &quot;</span>);</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true"></a>        <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true"></a>        pos = sc.<span class="fu">nextInt</span>();</span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true"></a>        carListIn.<span class="fu">remove</span>(pos-<span class="dv">1</span>);</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true"></a>    }</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true"></a>    <span class="co">// method for listing details of all cars in the list</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">listAll</span>(<span class="bu">List</span>&lt;Car&gt; carListIn) {</span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true"></a>        <span class="kw">for</span>(Car item : carListIn) {</span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(item);</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true"></a>        }</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true"></a>    }</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true"></a></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true"></a>    <span class="co">// method for writing the file</span></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">writeList</span>(<span class="bu">List</span>&lt;Car&gt; carListIn) {</span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true"></a>        <span class="co">// use try-with-resources to ensure file is closed safely</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true"></a>        <span class="kw">try</span> (</span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true"></a>                <span class="co">/* create a FileOutputStream object, carFile, that handles</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true"></a><span class="co">                the low-level details of writing the list to a file </span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true"></a><span class="co">                which we have called &quot;Cars.ser&quot; */</span></span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true"></a>                <span class="bu">FileOutputStream</span> carFile = <span class="kw">new</span> <span class="bu">FileOutputStream</span>(<span class="st">&quot;Cars.ser&quot;</span>);</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true"></a>                <span class="co">// create an ObjectOutputStream object to wrap around carFile</span></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true"></a>                <span class="bu">ObjectOutputStream</span> carStream = <span class="kw">new</span> <span class="bu">ObjectOutputStream</span>(carFile);</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true"></a>            )</span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true"></a>        {</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true"></a>            <span class="co">// write each element of the list to the file</span></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true"></a>            <span class="kw">for</span>(Car item : carListIn) {</span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true"></a>                carStream.<span class="fu">writeObject</span>(item);</span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true"></a>            }</span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true"></a>        }</span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true"></a>        <span class="kw">catch</span>(<span class="bu">IOException</span> e) {</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;There was a problem writing the file&quot;</span>);</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true"></a>        }</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true"></a>    }</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true"></a></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true"></a>    <span class="co">// method for reading the file</span></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true"></a>    <span class="dt">static</span> <span class="dt">void</span> <span class="fu">readList</span>(<span class="bu">List</span>&lt;Car&gt; carListIn) {</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true"></a>        Car tempCar;</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true"></a>        <span class="dt">boolean</span> endOfFile = <span class="kw">false</span>;</span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true"></a></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true"></a>        <span class="co">// use try-with-resources to ensure file is closed safely</span></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true"></a>        <span class="kw">try</span> (</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true"></a>                <span class="co">// create a FileInputStream object that handles the low-level </span></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true"></a>                <span class="co">// details of reading the list from the &quot;Cars.ser&quot; file </span></span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true"></a>                <span class="bu">FileInputStream</span> carFile = <span class="kw">new</span> <span class="bu">FileInputStream</span>(<span class="st">&quot;Cars.ser&quot;</span>);</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true"></a>                <span class="co">// create an ObjectInputStream object to wrap around carFile</span></span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true"></a>                <span class="bu">ObjectInputStream</span> carStream = <span class="kw">new</span> <span class="bu">ObjectInputStream</span>(carFile);</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true"></a>            )</span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true"></a>        {</span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true"></a>            <span class="kw">while</span>(endOfFile == <span class="kw">false</span>) { </span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true"></a>                <span class="kw">try</span> {</span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true"></a>                    <span class="co">// read a whole object</span></span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true"></a>                    tempCar = (Car) carStream.<span class="fu">readObject</span>();</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true"></a>                    carListIn.<span class="fu">add</span>(tempCar);</span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true"></a>                }</span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true"></a>                <span class="kw">catch</span>(<span class="bu">EOFException</span> e) {</span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true"></a>                    <span class="co">// use the fact that readObject throws an EOFException</span></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true"></a>                    <span class="co">// to check whether the end of the filehas been reached</span></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true"></a>                    endOfFile = <span class="kw">true</span>;</span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true"></a>                }                </span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true"></a>            }</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true"></a>        }</span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true"></a>        <span class="kw">catch</span>(<span class="bu">FileNotFoundException</span> e) {</span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">No previous file was read&quot;</span>);</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true"></a>        }</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true"></a>        <span class="kw">catch</span>(<span class="bu">ClassNotFoundException</span> e) { <span class="co">// thrown by readObject</span></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Trying to read an object of an unknown class&quot;</span>);</span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true"></a>        }</span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true"></a>        <span class="kw">catch</span>(<span class="bu">StreamCorruptedException</span> e) { <span class="co">// thrown by the constructor ObjectInputStream</span></span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Unreadable file format&quot;</span>);</span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true"></a>        }</span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true"></a>        <span class="kw">catch</span>(<span class="bu">IOException</span> e) {</span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">error: There was a problem reading the file&quot;</span>);</span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true"></a>        }</span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true"></a>    }</span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="ex">wladimir@wladimir-Nitro</span>:~/Disciplinas/2022.2/Programação Orientação a Objetos/re</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="ex">positorio/Semana17</span>$ <span class="ex">java</span> Main </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="ex">No</span> previous file was read</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 1</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a><span class="ex">Please</span> enter the registration number: 1</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a><span class="ex">Please</span> enter the make: Corsa</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a><span class="ex">Please</span> enter the price: 1000</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 3</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true"></a><span class="ex">Registration</span>: 1, Make: Corsa, Price: 1000.00</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 4</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true"></a><span class="ex">wladimir@wladimir-Nitro</span>:~/Disciplinas/2022.2/Programação Orientação a Objetos/re</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true"></a><span class="ex">positorio/Semana17</span>$ <span class="ex">java</span> Main </span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 3</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true"></a><span class="ex">Registration</span>: 1, Make: null, Price: 1000.00</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 1</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true"></a><span class="ex">Please</span> enter the registration number: 2</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true"></a><span class="ex">Please</span> enter the make: fiat</span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true"></a><span class="ex">Please</span> enter the price: 50000</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 3</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true"></a><span class="ex">Registration</span>: 1, Make: null, Price: 1000.00</span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true"></a><span class="ex">Registration</span>: 2, Make: fiat, Price: 50000.00</span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true"></a></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true"></a><span class="ex">Text</span> File Tester</span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true"></a><span class="ex">1.</span> Add a car</span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true"></a><span class="ex">2.</span> Remove a car</span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true"></a><span class="ex">3.</span> List all cars</span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true"></a><span class="ex">4.</span> Quit</span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true"></a><span class="ex">Entre</span> your choice: 4</span></code></pre></div>

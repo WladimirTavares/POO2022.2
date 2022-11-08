@@ -10,7 +10,7 @@ public class Exemplo5 {
             OutputStreamWriter osr = new OutputStreamWriter(out, "UTF-8");
             BufferedWriter bw = new BufferedWriter(osr);
 
-            bw.write("Hello World!!!");
+            bw.write("Hello World!!!\nAula de InputOutputStream\n");
             bw.close();
         } catch (Exception e) {
             e.printStackTrace();
