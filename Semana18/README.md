@@ -402,6 +402,7 @@ public class GUI5 extends JFrame {
     JTextField textField1;
     JTextArea textArea1;
     JButton button1;
+    JButton button2;
 
     public GUI5() {
         super("Lista de Frutas");
@@ -412,18 +413,21 @@ public class GUI5 extends JFrame {
         listModel.addElement("banana");
 
         lista = new JList<>(listModel);
-        lista.setSelectionMode(
-                ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         textArea1 = new JTextArea(10, 50);
         label1 = new JLabel("Fruta");
         textField1 = new JTextField(20);
         button1 = new JButton("Adicionar Fruta");
+        button2 = new JButton("Remover Fruta");
+
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         add(lista);
         add(label1);
         add(textField1);
         add(button1);
+        add(button2);
+        add(textArea1);
 
         button1.addActionListener(
                 new ActionListener() {
@@ -431,6 +435,28 @@ public class GUI5 extends JFrame {
 
                         listModel.addElement(textField1.getText());
                         textField1.setText("");
+                    }
+                }
+        );
+
+        button2.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        textArea1.append("removendo o elemento na posicao: " + lista.getSelectedIndex() + "\n");
+                        listModel.remove( lista.getSelectedIndex() );
+                        lista.setSelectedIndex(0);
+                    }
+                }
+        );  
+        
+        lista.addListSelectionListener(
+                new ListSelectionListener() {
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                        if (!e.getValueIsAdjusting()) {
+                            textArea1.append("Indice selecionado: " + lista.getSelectedIndex() + "\n");
+                            textArea1.append("Valor selecionado: " + lista.getSelectedValue() + "\n");
+                        }
                     }
                 });
 
@@ -440,4 +466,110 @@ public class GUI5 extends JFrame {
 
 ```
 
+TesteGUI5
 
+```Java
+import javax.swing.JFrame;
+
+public class TesteGUI5 {
+    public static void main(String[] args) {
+        GUI5 frame = new GUI5();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400); // configura tamanho do frame
+        frame.setVisible(true); // exibe frame
+    }
+}
+```
+
+## Pedra, Papel e Tesoura
+
+<p align="center">
+<img src="GUI7.png">
+</p>
+<p align = "center">
+<b>Pedra, papel e Tesoura</b> 
+</p>
+
+```Java
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.ListSelectionModel;
+import java.util.List;
+import java.text.Bidi;
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class GUI6 extends JFrame {
+    private JLabel label1, label2;
+    private DefaultListModel listModel;
+    private JList lista1, lista2;
+    private JButton button1;
+    private JTextArea textArea1;
+
+    public GUI6() {
+        super("Pedra, papel e tesoura");
+        label1 = new JLabel("Jogador 1:");
+
+        listModel = new DefaultListModel<>();
+        listModel.addElement("papel");
+        listModel.addElement("pedra");
+        listModel.addElement("tesoura");
+
+        lista1 = new JList<>(listModel);
+        lista1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        label2 = new JLabel("Jogador 2:");
+
+        lista2 = new JList<>(listModel);
+        lista2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        button1 = new JButton("Enviar");
+        textArea1 = new JTextArea(10, 30);
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(label1);
+        add(lista1);
+        add(label2);
+        add(lista2);
+        add(button1);
+        add(textArea1);
+
+        button1.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        if (lista1.getSelectedIndex() == lista2.getSelectedIndex()) {
+                            textArea1.append("empate\n");
+                        } else if (lista1.getSelectedIndex() == 0) {
+                            if (lista2.getSelectedIndex() == 1)
+                                textArea1.append("Jogador 1 ganha\n");
+                            if (lista2.getSelectedIndex() == 2)
+                                textArea1.append("Jogador 2 ganha\n");
+                        } else if (lista1.getSelectedIndex() == 1) {
+                            if (lista2.getSelectedIndex() == 0)
+                                textArea1.append("Jogador 2 ganha\n");
+                            if (lista2.getSelectedIndex() == 2)
+                                textArea1.append("Jogador 1 ganha\n");
+                        }else {
+                            if (lista2.getSelectedIndex() == 0)
+                                textArea1.append("Jogador 1 ganha\n");
+                            if (lista2.getSelectedIndex() == 1)
+                                textArea1.append("Jogador 2 ganha\n");
+                        }
+                    }
+                });
+    }
+
+}
+```
