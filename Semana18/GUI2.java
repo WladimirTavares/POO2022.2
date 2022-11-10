@@ -8,7 +8,9 @@ public class GUI2 {
         int n1 = Integer.parseInt(s1);
         int n2 = Integer.parseInt(s2);
 
-        JOptionPane.showMessageDialog(null, "A soma dos dois números é " + (n1 + n2), "Resultado", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, 
+        "A soma dos dois números é " + (n1 + n2), 
+        "Resultado", JOptionPane.PLAIN_MESSAGE);
         
         
     }

@@ -23,4 +23,5 @@
 * [Collections](Semana16/README.md)
 * [Java IO](Semana17/README.md)
 * [Interface Gráfica com Usuário](Semana18/README.md)
+* [Expressões Lambdas](Semana20/README.md)
   

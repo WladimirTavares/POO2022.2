@@ -58,19 +58,17 @@ public class GUI5 extends JFrame {
                         listModel.addElement(textField1.getText());
                         textField1.setText("");
                     }
-                }
-        );
+                });
 
         button2.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         textArea1.append("removendo o elemento na posicao: " + lista.getSelectedIndex() + "\n");
-                        listModel.remove( lista.getSelectedIndex() );
+                        listModel.remove(lista.getSelectedIndex());
                         lista.setSelectedIndex(0);
                     }
-                }
-        );  
-        
+                });
+
         lista.addListSelectionListener(
                 new ListSelectionListener() {
                     @Override

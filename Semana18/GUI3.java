@@ -20,7 +20,6 @@ public class GUI3 extends JFrame {
         super("Somando números");
 
         label1 = new JLabel("Entre com um número");
-        ;
         textfield1 = new JTextField(10);
         label2 = new JLabel("Entre com um número");
         textfield2 = new JTextField(10);
