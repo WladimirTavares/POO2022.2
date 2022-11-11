@@ -1,0 +1,60 @@
+@startuml
+class Passageiro{
+-id : String
+--
++ constructor(id : String)
+}
+
+class Vagao{
+-cadeiras : Passageiro[]
+--
++ embarcar(pass: Passageiro)
++ desembarcar(idPass: String)
++ exists(idPass: String): boolean
+--
++ constructor(capacidade: int)
+}
+
+class Trem{
+- maxVagoes: number
+- vagoes: Vagao[]
+- Registro : registro
+--
++ addVagao(vagao: Vagao)
++ embarcar(pass: Passageiro)
++ desembarcar(idPass: string)
++ exists(idPass): bool
+--
++ constructor(maxVagoes: number)
+}
+
+enum Direcao {
++  IN("in"), OUT("out");
+-  String value;
+--
+- constructor(value : String)
+}
+
+class Movimento{
+- pass: Passageiro
+- dir: Direcao
+--
+- constructor(idPass : String, Direcao dir)
+}
+
+class Registro{
+- cadastro: Passageiro[]
+- movimentos: Movimento[]
+--
++ cadastrar(pass: Passageiro)
++ movimentar(string: passId, mov: Movimento)
++ getCadastro() : Passageiro[]
++ getMovimentos() : Movimento[]
+}
+
+Vagao o-- Passageiro
+Trem  o-- Vagao
+Trem o-- Registro
+Registro o-- Passageiro
+Registro o-- Movimento
+@enduml
