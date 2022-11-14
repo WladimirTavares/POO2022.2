@@ -1,8 +1,6 @@
 ## Padrão Iterator
 
-O padrão de projetos Iterator é bastante utilizado para permitir o acesso sequencial dos elementos de uma coleção sem expor a sua implementação real da coleção. Considere o seguinte exemplo:
-
-A class RepoAluno guarda uma coleção de Aluno (uma coleção que permite repetições). A coleção começa com um tamanho inicial. Quando a coleção está cheia, a coleção é realocada para uma outra região da memória com o dobro do tamanho anterior. Além disso, a coleção permite remoção pelo nome do Aluno. A inserção será realizada na primeira posição com ``null``.
+O padrão de projeto Iterator é um padrão relativamente simples e bastante utilizado. Em um projeto, podemos disponibilizar várias coleções de objetos. Cada coleção de objetos pode prover uma ou mais maneiras de iterar os objetos da coleção sem expor sua implementação. No nosso exemplo, criaremos uma coleção para guardar uma coleção de alunos. A coleção começa com um tamanho inicial. Quando a coleção está cheia, a coleção é realocada para uma outra região da memória com o dobro do tamanho anterior. Além disso, a coleção permite remoção pelo nome do Aluno. A inserção será realizada na primeira posição com ``null``.
 
 ```Java
 public class RepoAluno {
