@@ -25,4 +25,7 @@
 * [Interface Gráfica com Usuário](Semana18/README.md)
 * [Interface Gráfica com Usuário 2](Semana19/README.md)
 * [Expressões Lambdas](Semana20/README.md)
+* [Padrão Iterator](Semana21/README.md)
+
+
   
