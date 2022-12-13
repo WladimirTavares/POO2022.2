@@ -1,6 +1,6 @@
 # Cinema
 
-![cover](cover.jpg)
+![cover](https://github.com/qxcodepoo/arcade/raw/master/base/010/cover.jpg)
 
 [](toc)
 
@@ -38,7 +38,7 @@ Seu sistema deverá:
 ## Diagrama
 
 
-![diagrama](diagrama.png)
+![diagrama](https://github.com/qxcodepoo/arcade/raw/master/base/010/diagrama.png)
 
 
 ***
