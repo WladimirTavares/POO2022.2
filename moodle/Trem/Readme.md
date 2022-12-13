@@ -1,6 +1,6 @@
 # Trem
 
-![cover](cover.jpg)
+![cover](https://raw.githubusercontent.com/WladimirTavares/POO2022.2/main/moodle/Trem/cover.jpg)
 
 [](toc)
 
@@ -12,7 +12,6 @@
   - [Exemplos](#exemplos)
   - [Diagrama](#diagrama)
   - [Solver](#solver)
-[](toc)
 
 O objetivo desta atividade é implementar um sistema que aloca passageiros em vagões de um trem. O trem é formado por uma série de vagões. É possível embarcar, desembarcar passageiros, ver quem está embarcado e a lista de passageiros que já passaram pelo nosso trem.
 

@@ -1,5 +1,33 @@
 ## Padrão Observer
 
+No padrão Observer, temos um objeto Fonte (que publica informações)  e os objetos assinantes (que recebem as publicações). 
+
+Os assinantes registram-se no Fonte para receber atualizações quando os dados da Fonte são alterados. Os assinantes podem cancelar o seu registro e deixar de receber as atualizações do Fonte.
+
+No projeto de interface gráfica, temos um objeto Button e podemos adicionar ActionListener (um assinante) que será notificado quando um botão for clicado. 
+
+
+No pacote [java.awt.event.*](https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/package-tree.html) temos várias contratos (interfaces) para assinar diferentes modificações de diferentes componentes do AWT:
+
+* java.util.EventListener
+* java.awt.event.ActionListener
+* java.awt.event.AdjustmentListener
+* java.awt.event.AWTEventListener
+* java.awt.event.ComponentListener
+* java.awt.event.ContainerListener
+* java.awt.event.FocusListener
+* java.awt.event.HierarchyBoundsListener
+* java.awt.event.HierarchyListener
+* java.awt.event.InputMethodListener
+* java.awt.event.ItemListener
+* java.awt.event.KeyListener
+* java.awt.event.MouseListener
+* java.awt.event.MouseMotionListener
+* java.awt.event.MouseWheelListener
+* java.awt.event.TextListener
+* java.awt.event.WindowFocusListener
+* java.awt.event.WindowListener
+* java.awt.event.WindowStateListener
 
 ## Class EventObject
 
